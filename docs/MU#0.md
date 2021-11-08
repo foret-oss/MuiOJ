@@ -65,6 +65,6 @@ __Material OJ__
 
  
 
-![图示  描述已自动生成](file:///C:/Users/syd/AppData/Local/Temp/msohtmlclip1/01/clip_image002.jpg)
+![图示  描述已自动生成](https://i.loli.net/2021/11/08/NsvlxrPyX5zBFeZ.jpg)
 
-**![一群人在餐厅用餐  中度可信度描述已自动生成](file:///C:/Users/syd/AppData/Local/Temp/msohtmlclip1/01/clip_image004.jpg)**
+**![一群人在餐厅用餐  中度可信度描述已自动生成](https://i.loli.net/2021/11/08/qVz38uwkEHlIcpQ.jpg)**
