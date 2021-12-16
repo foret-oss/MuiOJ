@@ -1,0 +1,17 @@
+
+POST http://localhost:8888/user/register
+Content-Type: application/json
+
+{
+  "username": "wadwings",
+  "password": "wadwings",
+  "email": "wingswad@gmail.com"
+}
+###
+POST http://localhost:8888/user/login
+Content-Type: application/json
+
+{
+  "username": "wadwings",
+  "password": "wadwings"
+}
