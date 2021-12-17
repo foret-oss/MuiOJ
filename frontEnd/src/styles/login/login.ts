@@ -1,4 +1,4 @@
-import { makeStyles } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 import color from "@styles/color/color";
 
 export default (isWidthLimited: boolean): any => makeStyles(() => ({
