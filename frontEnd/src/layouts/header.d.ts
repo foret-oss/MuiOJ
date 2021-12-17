@@ -1,3 +1,3 @@
 import { FunctionComponent } from 'react'
-declare const Switch: FunctionComponent
-export default Switch
+declare const Header: FunctionComponent
+export default Header

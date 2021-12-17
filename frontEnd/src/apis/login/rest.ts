@@ -23,9 +23,11 @@ const wrapLoginRequest = async (
     body: JSON.stringify(jsonData),
   };
   try {
-    return fetch(`${conf.baseUrl}${url}`, opts).then((result) =>
+    const data = await fetch(`${conf.baseUrl}${url}`, opts).then((result) =>
       result.json()
     )
+    console.log("resposeData：",data)
+    return data
   } catch ({ response }) {
     console.log(response);
     throw Error("send http request failed");
@@ -33,10 +35,16 @@ const wrapLoginRequest = async (
 };
 
 export default {
-  [loginType.Email]: async (form: RestForm, service: string): Promise<string> => {
+  [loginType.Email]: async (form: RestForm): Promise<string> => {
     return wrapLoginRequest(Endpoint.emailLogin, {
       email: form.Email,
       password: form.Password,
+    });
+  },
+  [loginType.Username]: async (form: RestForm): Promise<string> => {
+    return wrapLoginRequest(Endpoint.emailLogin, {
+      username: form['用户名'],
+      password: form['密码'],
     });
   },
 };

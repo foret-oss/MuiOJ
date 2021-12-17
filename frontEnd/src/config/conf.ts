@@ -1,5 +1,5 @@
 const conf = {
-  baseUrl: 'tx.dedsec.site:8000'
+  baseUrl: 'http://tx.dedsec.site:8888'
 }
 
 export default conf

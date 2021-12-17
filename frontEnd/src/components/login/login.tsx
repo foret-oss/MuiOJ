@@ -66,7 +66,7 @@ const LoginForm: FunctionComponent<unknown> = () => {
       const value = ele?.value;
       opts[id] = value;
     }
-    loginMethod[loginType](opts, "null");
+    loginMethod[loginType](opts);
   };
 
   return (
