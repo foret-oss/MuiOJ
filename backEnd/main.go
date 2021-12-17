@@ -15,7 +15,8 @@ func main() {
 	server := gin.Default()
 	server.Use(middlewares.Cors())
 	var err error
-	if db.DB, err = xorm.NewEngine("mysql", "root:wadwings@tcp(127.0.0.1:3306)/oj?charset=utf8"); err != nil {
+	mysqlConnect := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=uft8", config.MysqlUser, config.MysqlPassword, config.MysqlAddress, config.MysqlPort, config.MysqlDataBase)
+	if db.DB, err = xorm.NewEngine("mysql", mysqlConnect); err != nil {
 		fmt.Println(err)
 	}
 	config.Secret = "1idajsihgaopkopckafpo123"

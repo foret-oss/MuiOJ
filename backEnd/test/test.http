@@ -1,5 +1,5 @@
 
-POST http://localhost:8888/user/register
+POST http://127.0.0.1:8888/user/register
 Content-Type: application/json
 
 {

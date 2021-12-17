@@ -1,0 +1,50 @@
+version: "3.7"
+services:
+  mysql:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: p@55w0rd
+    stdin_open: true
+    tty: true
+    volumes:
+      - mysql:/var/lib/mysql
+    restart: always
+#  rabbitmq:
+#    image: rabbitmq:3
+#    ports:
+#      - 5672:5672
+#    environment:
+#      - RABBITMQ_DEFAULT_USER=user
+#      - RABBITMQ_DEFAULT_PASS=P@ssw0rd
+#    volumes:
+#      - rabbitmq:/var/lib/rabbitmq
+#    stdin_open: true
+#    tty: true
+#    restart: always
+  server:
+    build: ./
+    ports:
+      - 8888:8888
+      - 8090:8090
+#    env_file:
+#      - .env
+    environment:
+#      - Secret
+      - Role=Server
+    restart: always
+    depends_on:
+      - mysql
+#      - rabbitmq
+#    volumes:
+#      - type: bind
+#        source: ./files
+#        target: /app/files
+#      - type: bind
+#        source: ./config.json
+#        target: /app/config.json
+#      - type: bind
+#        source: ./files/certs
+#        target: /app/files/certs
+volumes:
+  mysql:
+#  rabbitmq:
