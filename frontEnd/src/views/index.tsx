@@ -1,7 +1,7 @@
 import React from "react"
 import { render } from "react-dom"
-import Router from '../router/router'
-import problemDisplay from '../components/problemDisplay/problemDisplay';
+import Router from '@router/router'
+import problemDisplay from '@components/problemDisplay/problemDisplay';
 import Header from "@layouts/header";
 import Login from "@components/login/login";
 

@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import './problemDisplay.css'
 
-class problemDisplay  extends Component {
-    constructor(props) {
+interface ComProps {
+
+}
+
+class problemDisplay  extends Component<ComProps> {
+    constructor(props: ComProps | Readonly<ComProps>) {
         super(props);
         this.state = {
         };
     }
 
-    handleClick = (e) => {
+    handleClick = (e: any) => {
     }
 
     render() {
