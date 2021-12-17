@@ -3,9 +3,11 @@ services:
   mysql:
     image: mysql
     environment:
-      MYSQL_ROOT_PASSWORD: p@55w0rd
+      MYSQL_ROOT_PASSWORD: wadwings
     stdin_open: true
     tty: true
+    ports:
+      - "3306:3306"
     volumes:
       - mysql:/var/lib/mysql
     restart: always
@@ -24,8 +26,8 @@ services:
   server:
     build: ./
     ports:
-      - 8888:8888
-      - 8090:8090
+      - "8888:8888"
+      - "8090:8090"
 #    env_file:
 #      - .env
     environment:

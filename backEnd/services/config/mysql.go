@@ -3,7 +3,7 @@ package config
 const (
 	MysqlUser = "root"
 	MysqlPassword = "wadwings"
-	MysqlAddress = "127.0.0.1"
+	MysqlAddress = "localhost"
 	MysqlPort = "3306"
 	MysqlDataBase = "oj"
 )
