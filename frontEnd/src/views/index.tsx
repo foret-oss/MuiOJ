@@ -1,8 +1,12 @@
 import React from "react"
+import Header from '@layouts/header'
 
 function App() {
   return (
-    <h1>HelloWorld</h1>
+    <>
+    <Header></Header>
+    </>
+    
   );
 }
 

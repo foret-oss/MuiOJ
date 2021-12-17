@@ -1,0 +1,53 @@
+.header {
+    position: fixed;
+    width: 90%;
+    height: 100px;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:flex-start ;
+}
+.title {
+    margin-left: 150px;
+    display: flex;
+}
+.userName {
+    display: flex;
+    font-size: 18px;
+    margin-left: 55%;
+}
+.Loginstatus {
+    color: #71838f;
+}
+.container-fluid {
+    width: 80%;
+    margin-top: 100px;
+    margin-left: 150px;
+    align-items: center;
+    box-shadow: 10px 10px 5px #888888;
+}
+.navbarNav {
+    margin-left: -50px;
+    font-size: 18px;
+    
+}
+ul {
+    list-style: none;
+}
+li {
+    display: inline;
+}
+.navbarNav > li {
+    float: left;
+    position: relative;
+    display: block;
+}
+.navbarNav > li > a {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    background-color: transparent;
+}
