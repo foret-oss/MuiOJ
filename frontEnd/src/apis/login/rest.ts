@@ -1,4 +1,4 @@
-import loginType from '@constant/login/'
+import loginType from '@constants/login/loginType'
 import conf from "@config/conf";
 
 interface RestForm {
@@ -6,9 +6,7 @@ interface RestForm {
 }
 
 const Endpoint = {
-  emailLogin: (service: string) => `/cas/login?type=email&service=${service}`,
-  phoneLogin: (service: string) => `/cas/login?type=phone&service=${service}`,
-  smsLogin: (service: string) => `/cas/login?type=sms&service=${service}`,
+  emailLogin: "/user/login",
 };
 
 const wrapLoginRequest = async (
@@ -25,14 +23,9 @@ const wrapLoginRequest = async (
     body: JSON.stringify(jsonData),
   };
   try {
-    const data = await fetch(`${conf.baseUrl}${url}`, opts).then((result) =>
+    return fetch(`${conf.baseUrl}${url}`, opts).then((result) =>
       result.json()
-    );
-    if (data.serviceResponse.authenticationSuccess !== undefined) {
-      return data.serviceResponse.authenticationSuccess.redirectService;
-    } else {
-      throw Error("response");
-    }
+    )
   } catch ({ response }) {
     console.log(response);
     throw Error("send http request failed");
@@ -41,23 +34,9 @@ const wrapLoginRequest = async (
 
 export default {
   [loginType.Email]: async (form: RestForm, service: string): Promise<string> => {
-    return wrapLoginRequest(Endpoint.emailLogin(service), {
+    return wrapLoginRequest(Endpoint.emailLogin, {
       email: form.Email,
       password: form.Password,
-    });
-  },
-
-  [loginType.Phone]: async (form: RestForm, service: string): Promise<string> => {
-    return wrapLoginRequest(Endpoint.phoneLogin(service), {
-      phone: form.Phone,
-      password: form.Password,
-    });
-  },
-
-  [loginType.SMS]: async (form: RestForm, service: string): Promise<string> => {
-    return wrapLoginRequest(Endpoint.smsLogin(service), {
-      phone: form.Phone,
-      code: form.Code,
     });
   },
 };

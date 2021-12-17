@@ -1,52 +1,14 @@
 import React, { FunctionComponent, useState } from "react";
-import color from "@color/color";
+import color from "@styles/color/color";
 import { Global, css } from "@emotion/react";
 import { Button, Card, Tab, Tabs, TextField } from "@mui/material";
-import { makeStyles } from "@mui/material";
 import styled from "@emotion/styled";
-import font from "../font/ScheherazadeNewBold.woff2";
-import LoginType from "@constant/loginType";
-import loginText from "@constant/login/";
-import loginMethod from "@api/rest";
+import LoginType from "@constants/login/loginType";
+import useStyles from "@styles/login/login"
+import loginText from "@constants/login/loginText";
+import loginMethod from "@apis/login/rest";
 
 const isWidthLimited = document.body.offsetWidth > 400;
-
-const useStyles = makeStyles(() => ({
-  root: {
-    background: color.buttonColor,
-    "&:hover": {
-      background: color.buttonColor,
-    },
-    color: "white",
-    border: 0,
-    borderRadius: 3,
-    height: 48,
-    padding: "0 30px",
-  },
-  default: {
-    color: color.defaultSvgColor,
-    backgroundColor: "transparent",
-    minHeight: "30px",
-    padding: isWidthLimited ? "0 10px" : "0 5px",
-    minWidth: isWidthLimited ? "50px" : "auto",
-    marginRight: isWidthLimited ? "20px" : 0,
-    fontSize: isWidthLimited ? "auto" : "4vmin",
-  },
-  tabs: {
-    minHeight: "30px",
-    color: color.defaultSvgColor,
-    backgroundColor: "transparent",
-    padding: isWidthLimited ? "0 10px" : "0 5px",
-    minWidth: isWidthLimited ? "50px" : "auto",
-    marginRight: isWidthLimited ? "20px" : 0,
-    fontSize: isWidthLimited ? "auto" : "4vmin",
-  },
-  querySms :{
-    "&:hover": {
-      background: 'transparent',
-    }
-  }
-}));
 
 const Login: FunctionComponent<unknown> = () => {
   return (
@@ -57,10 +19,6 @@ const Login: FunctionComponent<unknown> = () => {
             margin: 0;
             font-family: Gilroy-Medium, Tahoma, PingFangSC-Regular,
               Microsoft Yahei, Myriad Pro, Hiragino Sans GB, sans-serif;
-          }
-          @font-face {
-            font-family: "Flower Font";
-            src: url("${font}") format("woff2");
           }
         `}
       />
@@ -79,14 +37,13 @@ const Main = styled.div`
 `;
 
 const LoginForm: FunctionComponent<unknown> = () => {
-  const [loginType, setLoginType] = useState(LoginType.SMS);
+  const [loginType, setLoginType] = useState(LoginType.Email);
   const tabIndex = {
-    [LoginType.Phone]: 0,
     [LoginType.Email]: 1,
-    [LoginType.SMS]: 2,
+    [LoginType.Username]: 0,
     // [LoginType.LarkOauth]: 3,
   };
-  const classes = useStyles();
+  const classes = useStyles(isWidthLimited);
   const loginFieldText = loginText[loginType];
   const loginForm = loginFieldText.map((item) => {
     console.log(item);
@@ -97,20 +54,10 @@ const LoginForm: FunctionComponent<unknown> = () => {
           label={item}
           variant={"outlined"}
         ></LoginInputArea>
-        {item == '验证码' && <QuerySms onClick={() => methodQuerySms()} className={classes.querySms} variant="text">获取验证码</QuerySms>}
-      </LoginInputBlock>
+        </LoginInputBlock>
     );
   });
-  
-  const methodQuerySms = () => {
-    if(loginType === LoginType.SMS){
-      console.log("获取短信");
-      console.log("手机号:")
-    }else{
-      console.log("系统错误,请刷新页面");
-      
-    }
-  }
+
 
   const login = () => {
     const opts: { [key: string]: string } = {};
@@ -129,18 +76,13 @@ const LoginForm: FunctionComponent<unknown> = () => {
       <TabList>
       <Tabs className={classes.tabs} value={tabIndex[loginType]}>
         <Tab
-          label="手机号"
-          onClick={() => setLoginType(LoginType.Phone)}
+          label="用户名"
+          onClick={() => setLoginType(LoginType.Username)}
           className={classes.tabs}
         />
         <Tab
           label="邮箱"
           onClick={() => setLoginType(LoginType.Email)}
-          className={classes.tabs}
-        />
-        <Tab
-          label="短信验证码"
-          onClick={() => setLoginType(LoginType.SMS)}
           className={classes.tabs}
         />
         {/* <Tab
