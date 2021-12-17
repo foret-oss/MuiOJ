@@ -15,3 +15,21 @@ Content-Type: application/json
   "username": "wadwings",
   "password": "wadwings"
 }
+###
+POST http://tx.dedsec.site:8888/user/register
+Content-Type: application/json
+
+{
+"username": "wadwings",
+"password": "wadwings",
+"email": "wingswad@gmail.com"
+}
+
+###
+POST http://tx.dedsec.site:8888/user/login
+Content-Type: application/json
+
+{
+  "username": "wadwings",
+  "password": "wadwings"
+}
