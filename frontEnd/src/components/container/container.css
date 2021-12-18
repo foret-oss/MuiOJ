@@ -1,0 +1,7 @@
+.container {
+    display: flex;
+    -ms-flex-align: center;
+    width: 80%;
+    height: 100%;
+    background-color: antiquewhite;
+}

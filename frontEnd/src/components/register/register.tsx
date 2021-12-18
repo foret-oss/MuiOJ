@@ -43,10 +43,13 @@ const Main = styled.div`
 
 const RegisterForm: FunctionComponent<unknown> = () => {
     const registerType = RegisterType.Register;
+
+    //弹框
     const [open, setOpen] = React.useState(false);
+    const [snackbarMessage,setSnackbarMessage] = React.useState("")
+    
     const classes = useStyles(isWidthLimited);
-    const registerFieldText = registerText[registerType];
-    let snackbarMessage = "register successfully!"
+    const registerFieldText = registerText[registerType]
     let history = createBrowserHistory();
 
     const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
@@ -71,9 +74,7 @@ const RegisterForm: FunctionComponent<unknown> = () => {
                     open={open}
                     autoHideDuration={1500}
                     onClose={handleClose}
-                    message={setTimeout(() => {
-                        return snackbarMessage
-                    }, 500)}
+                    message={snackbarMessage}
                 />
             </RegisterInputBlock>
         );
@@ -90,21 +91,23 @@ const RegisterForm: FunctionComponent<unknown> = () => {
         //console.log("registerMessage",registerMessage);
         //console.log("registerMethod[registerType](opts):",opts)
         RegisterMethod[registerType](opts);
-        if (registerMessage.code === 500) {
-            snackbarMessage = registerMessage.message
-            //console.log("snackbarMessage:",snackbarMessage);
-            setOpen(true)
-            console.log("open", open)
-        }
         if (registerMessage.code === 200) {
+            setSnackbarMessage("Register Success!")
+            setOpen(true)
             history.push("/login");
+        }
+        else  {
+            setSnackbarMessage("Register Error!")
+            setOpen(true)
+            console.log("snackbarMessage:",snackbarMessage);
+            console.log("open", open)
         }
 
     };
 
     return (
         <FormLayout>
-            <H2>注册Unique Studio</H2>
+            <H2>注册MuiOJ</H2>
             {/* <Logo src={logo} /> */}
             {RegisterForm}
             <RegisterSubmitButton

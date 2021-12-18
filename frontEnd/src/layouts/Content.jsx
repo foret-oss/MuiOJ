@@ -5,6 +5,9 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import ProblemDisplay from '@/components/problemDisplay/problemDisplay';
+import './Content.css'
+import Container from '@/components/container/container'
+import styled from "@emotion/styled";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -64,7 +67,7 @@ export default function BasicTabs() {
         竞赛
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <ProblemDisplay></ProblemDisplay>
+          <MyProblemDisplay className="ProblemDisplay"></MyProblemDisplay>
       </TabPanel>
       <TabPanel value={value} index={3}>
         题库
@@ -75,3 +78,8 @@ export default function BasicTabs() {
     </Box>
   );
 }
+
+const MyProblemDisplay = styled(ProblemDisplay) `
+  margin-top:20rem;
+  top:20rem;
+`;

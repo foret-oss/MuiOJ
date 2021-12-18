@@ -6,26 +6,9 @@ import { BrowserRouter, Route } from "react-router-dom";
 import Header from "@layouts/header";
 import Login from "@components/login/login";
 
-// function App() {
-//     return (
-//       <BrowserRouter>
-//         <div>
-//           <header className="title">
-//             <Link to="/">首页</Link>
-//             <Link to="/login">登录</Link>
-//           </header>
-//           <br/>
-//           <br/>
-//           <Route path="/" component = {Header} />
-//           <Route path="/login" component = {Login} />
-//         </div>
-//       </BrowserRouter>
-  
-//     );
-  
-// }
 
 export default class extends React.Component {
+
   render()  {
     return (
       <Router>

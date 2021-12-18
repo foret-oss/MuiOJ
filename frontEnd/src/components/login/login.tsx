@@ -7,8 +7,12 @@ import LoginType from "@constants/login/loginType";
 import useStyles from "@styles/login/login"
 import loginText from "@constants/login/loginText";
 import loginMethod from "@apis/login/rest";
-import {loginMessage} from "@apis/login/rest"
+import { loginMessage } from "@apis/login/rest"
+import Snackbar from '@mui/material/Snackbar';
 import { createBrowserHistory } from "history";
+import { Link } from 'react-router-dom'
+
+//路由有问题，不能在点击时就跳转，需要刷新一次在跳转
 
 const isWidthLimited = document.body.offsetWidth > 400;
 
@@ -40,15 +44,26 @@ const Main = styled.div`
 
 const LoginForm: FunctionComponent<unknown> = () => {
   const [loginType, setLoginType] = useState(LoginType.Email);
-  //const [loginType, setLoginType] = useState(LoginType.Username);
+
+  //弹框
+  const [open,setOpen] = React.useState(false)
+  const [snackbarMessage,setSnackbarMessage] = React.useState('')
+
   const tabIndex = {
     [LoginType.Email]: 1,
     [LoginType.Username]: 0,
-    // [LoginType.LarkOauth]: 3,
   };
-  const classes = useStyles(isWidthLimited);
-  const loginFieldText = loginText[loginType];
+  const classes = useStyles(isWidthLimited)
+  const loginFieldText = loginText[loginType]
   let history = createBrowserHistory();
+
+  const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') {
+        return;
+    }
+    setOpen(false);
+};
+
   const loginForm = loginFieldText.map((item) => {
     console.log(item);
     return (
@@ -58,7 +73,15 @@ const LoginForm: FunctionComponent<unknown> = () => {
           label={item}
           variant={"outlined"}
         ></LoginInputArea>
-        </LoginInputBlock>
+
+        {/* 弹框组件 */}
+        <Snackbar
+          open={open}
+          autoHideDuration={1500}
+          onClose={handleClose}
+          message={snackbarMessage}
+        />
+      </LoginInputBlock>
     );
   });
 
@@ -70,38 +93,47 @@ const LoginForm: FunctionComponent<unknown> = () => {
       const value = ele?.value;
       opts[id] = value;
     }
-    // console.log("loginMethod[loginType](opts):",opts)
-    // console.log("[loginType]:",loginType)
     loginMethod[loginType](opts);
-    console.log("loginMessage:",loginMessage)
+    console.log("loginMessage:", loginMessage)
+
+    //处理登录token及弹框数据
     if (loginMessage.code === 200) {
-      window.sessionStorage.setItem('token',loginMessage.token.toString())
+      window.sessionStorage.setItem('token', loginMessage.token.toString())
+      //有问题，不能及时渲染
+      setSnackbarMessage("Login Succesfully!")
+      setOpen(true)
+      window.sessionStorage.setItem("loginData",JSON.stringify(loginMessage))
       history.push('./')
+    }
+    else {
+      setOpen(true)
+      setSnackbarMessage("Login Error!") 
     }
   };
 
+
   return (
     <FormLayout>
-      <H2>登录Unique Studio</H2>
+      <H2>登录MuiOJ</H2>
       {/* <Logo src={logo} /> */}
       <TabList>
-      <Tabs className={classes.tabs} value={tabIndex[loginType]}>
-        <Tab
-          label="用户名"
-          onClick={() => setLoginType(LoginType.Username)}
-          className={classes.tabs}
-        />
-        <Tab
-          label="邮箱"
-          onClick={() => setLoginType(LoginType.Email)}
-          className={classes.tabs}
-        />
-        {/* <Tab
+        <Tabs className={classes.tabs} value={tabIndex[loginType]}>
+          <Tab
+            label="用户名"
+            onClick={() => setLoginType(LoginType.Username)}
+            className={classes.tabs}
+          />
+          <Tab
+            label="邮箱"
+            onClick={() => setLoginType(LoginType.Email)}
+            className={classes.tabs}
+          />
+          {/* <Tab
           label="Lark认证"
           onClick={() => setLoginType(LoginType.LarkOauth)}
           className={classes.default}
         /> */}
-      </Tabs>
+        </Tabs>
       </TabList>
       {loginForm}
       <LoginSubmitButton
@@ -112,10 +144,14 @@ const LoginForm: FunctionComponent<unknown> = () => {
       >
         Next
       </LoginSubmitButton>
+      <RegisterButton><Link to={'/register'}>Register</Link></RegisterButton>
       <LoginSwitch></LoginSwitch>
     </FormLayout>
   );
 };
+
+
+export const loginData = loginMessage
 
 const TabList = styled.div`
   margin-bottom: 10px;
@@ -151,7 +187,14 @@ const QuerySms = styled(Button)`
 
 const LoginSubmitButton = styled(Button)`
   margin: 2rem 0 1rem;
+  margin-right: 10rem;
+  background-color: "#1e68f9"
 `;
+
+const RegisterButton = styled(Button)`
+ margin-left: 10rem;
+ margin-top: -3.5rem;
+`
 
 const LoginSwitch = styled.div`
   display: flex;
