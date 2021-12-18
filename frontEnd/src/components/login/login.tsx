@@ -38,6 +38,7 @@ const Main = styled.div`
 
 const LoginForm: FunctionComponent<unknown> = () => {
   const [loginType, setLoginType] = useState(LoginType.Email);
+  //const [loginType, setLoginType] = useState(LoginType.Username);
   const tabIndex = {
     [LoginType.Email]: 1,
     [LoginType.Username]: 0,
@@ -66,6 +67,8 @@ const LoginForm: FunctionComponent<unknown> = () => {
       const value = ele?.value;
       opts[id] = value;
     }
+    console.log("loginMethod[loginType](opts):",opts)
+    console.log("[loginType]:",loginType)
     loginMethod[loginType](opts);
   };
 

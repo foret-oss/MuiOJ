@@ -1,13 +1,14 @@
 import React from "react"
 import { render } from "react-dom"
-import Router from '@router/router'
-import problemDisplay from '@components/problemDisplay/problemDisplay';
+import Router from '../router/router'
+import { BrowserRouter, Route } from "react-router-dom";
+//import problemDisplay from '../components/problemDisplay/problemDisplay';
 import Header from "@layouts/header";
 import Login from "@components/login/login";
 
 // function App() {
 //     return (
-//       <Router>
+//       <BrowserRouter>
 //         <div>
 //           <header className="title">
 //             <Link to="/">首页</Link>
@@ -18,7 +19,7 @@ import Login from "@components/login/login";
 //           <Route path="/" component = {Header} />
 //           <Route path="/login" component = {Login} />
 //         </div>
-//       </Router>
+//       </BrowserRouter>
   
 //     );
   
@@ -27,12 +28,14 @@ import Login from "@components/login/login";
 export default class extends React.Component {
   render()  {
     return (
-      // <Router>
-      // </Router>
-      <div>
-      <Header></Header>
-      <Login></Login>
-      </div>
+      <Router>
+      </Router>
+      // <div>
+      // <Header></Header>
+      // <TabPanel></TabPanel>
+      // <Login></Login>
+      
+      // </div>
     )
   }
 }

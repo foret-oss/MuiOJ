@@ -17,7 +17,7 @@
 .userName {
     display: flex;
     font-size: 18px;
-    margin-left: 55%;
+    margin-left: 50%;
     min-width: 15rem;
 }
 .Loginstatus {
@@ -52,4 +52,13 @@ li {
     padding: 1rem 1rem;
     text-decoration: none;
     background-color: transparent;
+}
+.css-8atqhb {
+    margin-top: 5.5rem;
+    margin-left: 9rem;
+}
+.TabPanel {
+    width: 80%;
+    background-color : #f4f7f5;
+    border-radius: 6px;
 }
