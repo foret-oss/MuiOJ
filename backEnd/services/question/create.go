@@ -20,14 +20,13 @@ func Create(uid uint32, questionForm *forms.QuestionEditForm) (int, error){
 			SpaceLimit: questionForm.SpaceLimit,
 			CreatedAt: time.Now(),
 		}
+		if _, err := session.Table("question").Insert(&questionOverview); err != nil {
+			return InvalidTid, err
+		}
 		questionContent := models.QuestionContent{
 			Tid: questionOverview.Tid,
 			Content: questionForm.Content,
 			Sample: questionForm.Sample,
-		}
-
-		if _, err := session.Table("question").Insert(&questionOverview); err != nil {
-			return InvalidTid, err
 		}
 		if _, err := session.Table("question_content").Insert(&questionContent); err != nil {
 			return InvalidTid, err
