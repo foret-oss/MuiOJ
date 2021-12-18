@@ -18,7 +18,7 @@ func Create(uid uint32, questionForm *forms.QuestionEditForm) (int, error){
 			Difficulty: questionForm.Difficulty,
 			TimeLimit: questionForm.TimeLimit,
 			SpaceLimit: questionForm.SpaceLimit,
-			CreateAt: time.Now(),
+			CreatedAt: time.Now(),
 		}
 		questionContent := models.QuestionContent{
 			Tid: questionOverview.Tid,

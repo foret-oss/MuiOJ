@@ -12,5 +12,5 @@ type Question struct {
 	Difficulty uint8     `json:"difficulty"`
 	TimeLimit  uint32    `json:"time_limit"`
 	SpaceLimit uint32    `json:"space_limit"`
-	CreateAt   time.Time `json:"create_at"`
+	CreatedAt   time.Time `json:"create_at"`
 }

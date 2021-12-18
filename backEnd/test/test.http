@@ -42,8 +42,9 @@ Content-Type: application/json
   "password": "wadwings"
 }
 ###
-POST http://localhost:8888/question/item
+POST http://tx.dedsec.site:8888/question/item
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsInVzZXJuYW1lIjoid2Fkd2luZ3MiLCJpc19hZG1pbiI6dHJ1ZSwiZXhwIjoxNjM5OTIyMjA4fQ.0OFX6q_Gq4rcMcqmdK6hLwCedwzHua9smqiPyK70hfMlDWjwyKt4oPFq7OjQCX1Zo5wQXrRxKcWsxhv-XYaqhw
 
 {
   "title": "1.A+BProblem",
