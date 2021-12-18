@@ -91,6 +91,7 @@ func LoginByEmail(c *gin.Context){
 			"code":    404,
 			"message": "Username or Password wrong.",
 		})
+		return
 	}
 
 	userInfo, err := UserService.InfoByEmail(loginForm.Email)
@@ -99,6 +100,7 @@ func LoginByEmail(c *gin.Context){
 			"code": 500,
 			"message": err.Error(),
 		})
+		return
 	}
 
 	saltPassword := utils.SaltPasswd(loginForm.Password)
@@ -109,6 +111,7 @@ func LoginByEmail(c *gin.Context){
 				"code":    500,
 				"message": err.Error(),
 			})
+			return
 		} else {
 			c.JSON(200, gin.H{
 				"code": 200,

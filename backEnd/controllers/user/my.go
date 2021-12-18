@@ -23,7 +23,6 @@ func My(c *gin.Context) {
 			"code": 400,
 			"message": err.Error(),
 		})
-		return
 	} else {
 		c.JSON(200, gin.H{
 			"code": 200,

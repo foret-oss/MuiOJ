@@ -110,7 +110,7 @@ CREATE TABLE `contest_user` (
 CREATE TABLE `question` (
                             `tid` int(10) UNSIGNED NOT NULL,
                             `uid` int(10) UNSIGNED NOT NULL,
-                            `subject` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+                            `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
                             `hide` tinyint(1) NOT NULL DEFAULT '0',
                             `attempt` int(10) UNSIGNED NOT NULL DEFAULT '0',
                             `accept` int(10) UNSIGNED NOT NULL DEFAULT '0',
