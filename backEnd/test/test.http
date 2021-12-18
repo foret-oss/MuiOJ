@@ -8,7 +8,15 @@ Content-Type: application/json
   "email": "wingswad@gmail.com"
 }
 ###
-POST http://localhost:8888/user/login
+POST http://localhost:8888/user/login?type=email
+Content-Type: application/json
+
+{
+  "email": "wingswad@gmail.com",
+  "password": "wadwings"
+}
+###
+POST http://localhost:8888/user/login?type=username
 Content-Type: application/json
 
 {

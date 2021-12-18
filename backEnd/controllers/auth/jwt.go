@@ -3,7 +3,6 @@ package auth
 import (
 	"MuiOJ-backEnd/models"
 	"MuiOJ-backEnd/services/config"
-	"fmt"
 	"github.com/dgrijalva/jwt-go"
 	"time"
 )
@@ -30,7 +29,6 @@ func SignJWT(user *models.User) (string, error) {
 		},
 	}
 	tokenObj := jwt.NewWithClaims(jwt.SigningMethodHS512, jwtObject)
-	fmt.Println([]byte(config.Secret))
 	return tokenObj.SignedString([]byte(config.Secret))
 }
 
