@@ -1,13 +1,11 @@
 .Tabs {
-    position: absolute;
-    width: 80%;
+    position: fixed;
     border-radius: 5px;
     position: relative;
-    margin-top: -5rem;
-    margin-left: -10rem;
-    
+    margin-top: -3rem;
+    margin-left: -10rem; 
 }
 .Autocomplete {
-    margin-left: 15rem;
+    margin-left: 20rem;
     margin-top: -7.8rem;
 }

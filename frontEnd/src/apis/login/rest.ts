@@ -1,5 +1,6 @@
 import loginType from '@constants/login/loginType'
 import conf from "@config/conf";
+import login from '@styles/login/login';
 
 interface RestForm {
   [key: string]: string
@@ -9,6 +10,13 @@ const Endpoint = {
   emailLogin: "/user/login?type=email",
   usernameLogin: "/user/login?type=username",
 };
+
+let loginData = {
+  code: 0,
+  token:'',
+  message: '',
+  username: ''
+}
 
 const wrapLoginRequest = async (
   url: string,
@@ -29,6 +37,9 @@ const wrapLoginRequest = async (
     )
     console.log("resposeData：",data)
     console.log("request body:", opts.body)
+    loginData.code = data.code
+    loginData.username = data.message.username
+    loginData.token = data.message.token
     return data
   } catch ({ response }) {
     console.log(response);
@@ -52,3 +63,5 @@ export default {
     });
   },
 };
+
+export const loginMessage = loginData

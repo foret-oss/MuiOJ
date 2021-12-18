@@ -7,6 +7,8 @@ import LoginType from "@constants/login/loginType";
 import useStyles from "@styles/login/login"
 import loginText from "@constants/login/loginText";
 import loginMethod from "@apis/login/rest";
+import {loginMessage} from "@apis/login/rest"
+import { createBrowserHistory } from "history";
 
 const isWidthLimited = document.body.offsetWidth > 400;
 
@@ -46,6 +48,7 @@ const LoginForm: FunctionComponent<unknown> = () => {
   };
   const classes = useStyles(isWidthLimited);
   const loginFieldText = loginText[loginType];
+  let history = createBrowserHistory();
   const loginForm = loginFieldText.map((item) => {
     console.log(item);
     return (
@@ -67,9 +70,14 @@ const LoginForm: FunctionComponent<unknown> = () => {
       const value = ele?.value;
       opts[id] = value;
     }
-    console.log("loginMethod[loginType](opts):",opts)
-    console.log("[loginType]:",loginType)
+    // console.log("loginMethod[loginType](opts):",opts)
+    // console.log("[loginType]:",loginType)
     loginMethod[loginType](opts);
+    console.log("loginMessage:",loginMessage)
+    if (loginMessage.code === 200) {
+      window.sessionStorage.setItem('token',loginMessage.token.toString())
+      history.push('./')
+    }
   };
 
   return (
