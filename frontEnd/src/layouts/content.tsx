@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import ProblemDisplay from '@src/components/problemDisplay/problemDisplay';
 import './Content.css'
-import Main from '@components/board/board'
+import Board from '@components/board/board'
 import Submit from '@src/components/submission/submit'
 import {useState} from 'react'
 import styled from '@emotion/styled'
@@ -57,12 +57,11 @@ export default function BasicTabs() {
           <Tab label="学习" {...a11yProps(0)} />
           <Tab label="竞赛" {...a11yProps(1)} />
           <Tab label="题库" {...a11yProps(2)} />
-          <Tab label="讨论" {...a11yProps(3)} />
-          <Tab label="提交记录" {...a11yProps(4)} />
+          <Tab label="提交记录" {...a11yProps(3)} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        <Main></Main>
+        <Board></Board>
       </TabPanel>
       <TabPanel value={value} index={1}>
         竞赛
@@ -71,9 +70,6 @@ export default function BasicTabs() {
           <ProblemDisplay ></ProblemDisplay>
       </TabPanel>
       <TabPanel value={value} index={3}>
-        题库
-      </TabPanel>
-      <TabPanel value={value} index={4}>
         <Submit></Submit>
       </TabPanel>
     </Box>
