@@ -80,7 +80,7 @@ const ProblemItem = (props) => {
 
 
 
-  const handleClose = (event , reason) => {
+  const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
         return;
     }
