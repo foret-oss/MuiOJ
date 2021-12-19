@@ -1,4 +1,4 @@
-import { FC, useEffect, useState, FunctionComponent } from 'react'
+import { FC, useEffect, useState, FunctionComponent, useRef } from 'react'
 import request from '@apis/common/authRequest'
 import styles from './problemItem.module.css'
 import Editor from '@components/editor/editor'
@@ -15,27 +15,6 @@ const EditorContainer = () => {
   return <div></div>
 }
 
-const handleClick = () => {
-  const code = editorRef.current.getValue()
-  console.log("code", code)
-  const urlParams = new URL(window.location.href);
-  const tid = urlParams?.pathname.substring(6);
-  request('/question/item/' + tid, { 
-    method: "POST",
-    body: {
-      language:"cpp17",
-      code: code
-    },
-   }).then(res => {
-      if (res.code === 200) {
-        console.log("submit success!")
-        }
-    })
-}
-
-
-
-
 const ProblemItem = (props) => {
   const [data, setData] = useState(
     {
@@ -45,7 +24,7 @@ const ProblemItem = (props) => {
       sampleIn: '',
       sampleOut: ''
     })
-
+  const editorRef = useRef(null);
   const urlParams = new URL(window.location.href);
   const tid = urlParams?.pathname.substring(6);
   console.log("当前页面路由：", tid)
@@ -66,6 +45,23 @@ const ProblemItem = (props) => {
 
     })
   }, [])
+  const handleClick = () => {
+    const code = editorRef.current.getValue()
+    console.log("code", code)
+    const urlParams = new URL(window.location.href);
+    const tid = urlParams?.pathname.substring(6);
+    request('/question/item/' + tid, { 
+      method: "POST",
+      body: {
+        language:"cpp17",
+        code: code
+      },
+    }).then(res => {
+        if (res.code === 200) {
+          console.log("submit success!")
+          }
+      })
+  }
 
   console.log("ProblemItemData", data)
 
@@ -74,7 +70,7 @@ const ProblemItem = (props) => {
       &ensp;{data.content}
     </div>
     <div className={styles.content}>
-      <Editor ></Editor>
+      <Editor forwardRef={editorRef}></Editor>
     </div>
     <Button onClick={() => handleClick()}  className={styles.Button} variant="outlined" color="success">
       Submit
