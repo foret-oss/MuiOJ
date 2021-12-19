@@ -1,0 +1,6 @@
+.container {
+    display: flex;
+    -ms-flex-align: center;
+    width: 80%;
+    height: 100%;
+}
