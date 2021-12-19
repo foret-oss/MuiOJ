@@ -4,7 +4,6 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import ProblemDisplay from '@src/components/problemDisplay/problemDisplay';
-import './Content.css'
 import Board from '@components/board/board'
 import Submit from '@src/components/submission/submit'
 import {useState} from 'react'
