@@ -44,7 +44,7 @@ export default class ProblemDisplay extends Component {
       console.log("this.problemList", this.state.problemList)
     })
   }
-     
+  
   render() {
     return (
       <div className='problemContainer'>
@@ -60,7 +60,7 @@ export default class ProblemDisplay extends Component {
                     </Avatar>
                   </ListItemAvatar>
                   <Link to={'/edit/' + item.tid} style={this.styles}>
-                    <ListItemText primary={item.title} secondary={"提交次数："+ item.accept} />
+                    <ListItemText primary={item.title} secondary={"提交次数："+ item.attempt} />
                   </Link>
                 </ListItem>
               )
