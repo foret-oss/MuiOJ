@@ -71,6 +71,7 @@ const LoginForm: FunctionComponent<unknown> = () => {
         <LoginInputArea
           id={item}
           label={item}
+          type={item === 'password' ? 'password' : ''}
           variant={"outlined"}
         ></LoginInputArea>
 

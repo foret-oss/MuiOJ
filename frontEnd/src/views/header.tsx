@@ -27,7 +27,7 @@ const Header: FC<HeaderProps> = ({username}) => {
     }
 
     return (
-        <div>
+        <HeaderOutside>
             <HeaderLayout>
                 <HeaderBlock>
                     <img style={{ borderRadius: "5px", width: "50px", height: "50px" }} src='../src/images/homeAvatar.png' className='titlePicture'></img>
@@ -43,9 +43,13 @@ const Header: FC<HeaderProps> = ({username}) => {
             <ContentLayout>
                 {/* <Content /> */}
             </ContentLayout>
-        </div>
+        </HeaderOutside>
     )
 }
+
+const HeaderOutside = styled.div`
+    width: 100%;
+`
 
 const HeaderLayout = styled.div`
     position: relative;
@@ -64,6 +68,7 @@ const HeaderBlock = styled.div`
 
 const HeaderTitle = styled.h3`
     font-size: 36px;
+    margin: 0 0 0 1rem;
 `
 
 const ContentLayout = styled.div`
