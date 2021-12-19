@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"MuiOJ-backEnd/models/judger"
 	"archive/tar"
 	"bytes"
 	"fmt"
@@ -97,7 +98,7 @@ func AllFilesInDirToTarArchiveInfo(filePath, absPath string) ([]TarFileBasicInfo
 	return basicInfo, nil
 }
 
-func TestCasesToTarArchiveInfo(testCases []*JudgerModels.TestCaseType, absPath string) ([]TarFileBasicInfo, error) {
+func TestCasesToTarArchiveInfo(testCases []*judger.TestCase, absPath string) ([]TarFileBasicInfo, error) {
 	var basicInfo []TarFileBasicInfo
 
 	for _, testCase := range testCases {

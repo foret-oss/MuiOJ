@@ -2,6 +2,7 @@ package judger
 
 import (
 	"MuiOJ-backEnd/models"
+	judger2 "MuiOJ-backEnd/models/judger"
 	"MuiOJ-backEnd/services/config/judger"
 	"MuiOJ-backEnd/services/docker"
 	"MuiOJ-backEnd/utils"
@@ -123,7 +124,33 @@ func Runner(
 	var tarInfos []utils.TarFileBasicInfo
 	if !judger.Global.Extensions.HostBind {
 		fmt.Printf("(%d) [Runner] Preparing judge cases for container \n", sid)
-		caseArchiveInfos, err := utils.TestCasesToTarArchiveInfo(testCases, "/case")
+		var testCasesInType []*judger2.TestCase
+		for index, test := range testCases{
+			in, err := os.CreateTemp("/tmp", "rw")
+			if err != nil {
+				return nil, err
+			}
+			out, err := os.CreateTemp("/tmp", "rw")
+			if err != nil {
+				return nil, err
+			}
+			if _, err = in.Write([]byte(test.In)); err != nil {
+				return nil ,err
+			}
+			if _, err = out.Write([]byte(test.Out)); err != nil {
+				return nil, err
+			}
+			testCasesInType = append(testCasesInType, &judger2.TestCase{
+				Id:         index + 1,
+				StdinPath:  fmt.Sprintf("%s", in.Name()),
+				Stdin:      []byte(test.In),
+				StdoutPath: fmt.Sprintf("%s", out.Name()),
+				Stdout:     []byte(test.Out),
+			})
+			_ = in.Close()
+			_ = out.Close()
+		}
+		caseArchiveInfos, err := utils.TestCasesToTarArchiveInfo(testCasesInType, "/case")
 		if err != nil {
 			return nil, err
 		}

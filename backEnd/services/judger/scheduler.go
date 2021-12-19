@@ -4,6 +4,7 @@ import (
 	"MuiOJ-backEnd/models/judger"
 	JudgerConfig "MuiOJ-backEnd/services/config/judger"
 	files "MuiOJ-backEnd/utils/file"
+	"encoding/json"
 	"errors"
 	"fmt"
 	"io/ioutil"
@@ -11,6 +12,12 @@ import (
 	"strconv"
 	"time"
 )
+
+type CollectedStdout struct {
+	Stdout      string
+	RightStdout string
+}
+
 
 func Scheduler(request *judger.StarterType) (string, []*judger.JudgeCaseResult, error) {
 	sid := request.Sid
@@ -80,15 +87,15 @@ func Scheduler(request *judger.StarterType) (string, []*judger.JudgeCaseResult, 
 		codePath,
 		&compileInfo,
 		testCases,
-		strconv.FormatUint(uint64(request.TimeLimit), 10),
-		strconv.FormatUint(uint64(request.SpaceLimit), 10),
+		strconv.FormatUint(1000, 10),
+		strconv.FormatUint(128, 10),
 		outputPath,
 		request.Code,
 		buildProduction); err != nil {
 
 		fmt.Printf("(%d) [Scheduler] RE %+v \n", sid, err)
 		//CallbackAllError("RE", sid, request.IsContest, testCaseCount)
-		return "RE", make([]*protobuf.JudgeCaseResult, testCaseCount), err
+		return "RE", make([]*judger.JudgeCaseResult, testCaseCount), err
 	}
 	fmt.Printf("(%d) [Scheduler] Runner OK \n", sid)
 
@@ -96,20 +103,20 @@ func Scheduler(request *judger.StarterType) (string, []*judger.JudgeCaseResult, 
 	jsonFileByte, err := ioutil.ReadFile(filepath.Join(codePath, "result.json"))
 	if err != nil {
 		//CallbackAllError("RE", sid, request.IsContest, testCaseCount)
-		return "RE", make([]*protobuf.JudgeCaseResult, testCaseCount), err
+		return "RE", make([]*judger.JudgeCaseResult, testCaseCount), err
 	}
 
-	var testResultArr []JudgerModel.TestResult
+	var testResultArr []judger.TestResult
 	if err := json.Unmarshal(jsonFileByte, &testResultArr); err != nil || testResultArr == nil {
 		//CallbackAllError("RE", sid, request.IsContest, testCaseCount)
-		return "RE", make([]*protobuf.JudgeCaseResult, testCaseCount), err
+		return "RE", make([]*judger.JudgeCaseResult, testCaseCount), err
 	}
 
 	// collect std::out
 	fmt.Printf("(%d) [Scheduler] Collecting stdout \n", sid)
 	allStdin := make([]CollectedStdout, testCaseCount)
 	for i := 1; i <= testCaseCount; i++ {
-		allStdin[i-1].RightStdout = string(testCases[i-1].Stdout)
+		allStdin[i-1].RightStdout = testCases[i-1].Out
 	}
 
 	// optimize this: avoid writing, reading file in the disk (performance optimization)
@@ -138,13 +145,14 @@ func Scheduler(request *judger.StarterType) (string, []*judger.JudgeCaseResult, 
 
 	// judge std::out
 	fmt.Printf("(%d) [Scheduler] Judging stdout \n", sid)
-	resultList := make([]*protobuf.JudgeCaseResult, testCaseCount)
+	resultList := make([]*judger.JudgeCaseResult, testCaseCount)
+
 
 	for index, item := range allStdin {
 		testResult := &testResultArr[index]
-		resultList[index] = &protobuf.JudgeCaseResult{}
+		resultList[index] = &judger.JudgeCaseResult{}
 
-		judgeResult := JudgeOneCase(testResult, item.Stdout, item.RightStdout, request.CompMode)
+		judgeResult := JudgeOneCase(testResult, item.Stdout, item.RightStdout, "")
 		resultList[index].Status = judgeResult.Status
 		resultList[index].SpaceUsed = judgeResult.SpaceUsed
 		resultList[index].TimeUsed = judgeResult.TimeUsed

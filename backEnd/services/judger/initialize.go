@@ -14,7 +14,9 @@ var (
 
 )
 
-func initJudger() {
+func InitJudger() {
+	judger.Global = &judger.ConfigType{}
+	judger.Global.Extensions.HostBind = false
 	initMu.Lock()
 	defer initMu.Unlock()
 	if alreadyInit {
@@ -164,14 +166,14 @@ func initJudger() {
 	}
 
 	//os.Setenv("DEV", "1")
-	InitJudger(cfg, true, "Judge")
+	InitJudgerWithConf(cfg, true, "Judge")
 
 	//OnJudgeResponse = append(OnJudgeResponse, func(sid uint32, isContest bool, judgeResult []*JudgerModels.JudgeResult) {
 	//	fmt.Println(sid, isContest, judgeResult)
 	//})
 }
 
-func InitJudger(config *judger.ConfigType, withDocker bool, role string) {
+func InitJudgerWithConf(config *judger.ConfigType, withDocker bool, role string) {
 	judger.Global = config
 	judger.Role = role
 
