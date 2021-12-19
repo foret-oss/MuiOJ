@@ -21,26 +21,29 @@ export default class ProblemDisplay extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: 1
+      page: 1,
+      problemList : [],
+      problemUrl : "/question/list"
     }
   }
 
-  problemUrl = "/question/list"
-
-  problemList = [
-  ]
-
-  styles = { textDecoration: "none", color: "#71838f" }
+  styles = {textDecoration: "none", color: "#71838f" }
 
   handleChange = (event, value) => {
     this.setState({ page: value })
-    console.log("now Page:", this.state.page);
+    const res = GetProblem(this. state.problemUrl + '/' + this.state.page)
+    res.then(res => {
+      this.setState({ problemList: res.message})
+      //console.log("this.problemList", this.state.problemList)
+    })
   };
 
   componentDidMount() {
-    const res = GetProblem(this.problemUrl + '/' + this.state.page)
-    this.problemList = res.message
-    console.log("this.problemList:", res)
+    const res = GetProblem(this. state.problemUrl + '/' + this.state.page)
+    res.then(res => {
+      this.setState({ problemList: res.message})
+      console.log("this.problemList", this.state.problemList)
+    })
   }
      
 
@@ -50,7 +53,7 @@ export default class ProblemDisplay extends Component {
         <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
           {
             //maps循环
-            this.problemList.map(item => {
+            this.state.problemList.map(item => {
               return (
                 <ListItem key={item.id}>
                   <ListItemAvatar>
@@ -67,7 +70,7 @@ export default class ProblemDisplay extends Component {
           }
         </List>
         <Stack spacing={2}>
-          <Typography>Page: {this.state.page}</Typography>
+          {/* <Typography>Page: {this.state.page}</Typography> */}
           <Pagination count={10} page={this.state.page} onChange={this.handleChange} />
         </Stack>
       </div>

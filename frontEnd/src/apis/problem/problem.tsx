@@ -27,18 +27,12 @@ const getProblemRequest = async (
     )
     console.log("request body:", opts.body)
     console.log("success resbouse:",data)
-    window.sessionStorage.setItem("problemList:",JSON.stringify(data) )
     return data
   } catch ({ response }) {
     console.log("request body:", opts)
     throw Error("send http request failed")
   }
 };
-
-const test = () => {
-    let listData = getProblemRequest("/question/list/1")
-    console.log("ListData",listData)
-}
 
 export default getProblemRequest
 
