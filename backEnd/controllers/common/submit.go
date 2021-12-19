@@ -4,13 +4,13 @@ import (
 	"MuiOJ-backEnd/controllers/auth"
 	"MuiOJ-backEnd/models"
 	"MuiOJ-backEnd/models/forms"
-	"MuiOJ-backEnd/models/judger"
-	JudgerService "MuiOJ-backEnd/services/judger"
+	JudgetModels "MuiOJ-backEnd/models/judger"
+	_ "MuiOJ-backEnd/services/judger"
 	"MuiOJ-backEnd/services/question"
 	SubmissionService "MuiOJ-backEnd/services/submission"
 	"MuiOJ-backEnd/utils/file"
 	"errors"
-	"fmt"
+	_ "fmt"
 	"io/ioutil"
 )
 
@@ -51,7 +51,7 @@ func CodeSubmit(tid uint32, submitForm *forms.SubmitForm, authObject *auth.Claim
 
 
 	go func(submission *models.Submission) {
-		starterParameter := &judger.StarterType{
+		_ = &JudgetModels.StarterType{
 			Code:       []byte(submitForm.Code),
 			Sid:        submission.Sid,
 			Tid:        submission.Tid,
@@ -59,11 +59,11 @@ func CodeSubmit(tid uint32, submitForm *forms.SubmitForm, authObject *auth.Claim
 			Test:		questionJudge.Dataset,
 		}
 
-		if err := judger.Starter(starterParameter); err != nil {
-			fmt.Print(err)
-		}
-		question.UpdateAttemptCount(tid)
-		user.UpdateAttemptCount(authObject.Uid)
+		//if err := judger.Starter(starterParameter); err != nil {
+		//	fmt.Print(err)
+		//}
+		//question.UpdateAttemptCount(tid)
+		//user.UpdateAttemptCount(authObject.Uid)
 	}(submission)
 
 	return submission.Sid, nil
