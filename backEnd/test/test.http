@@ -1,0 +1,76 @@
+
+POST http://127.0.0.1:8888/user/register
+Content-Type: application/json
+
+{
+  "username": "wadwings",
+  "password": "wadwings",
+  "email": "wingswad@gmail.com"
+}
+###
+POST http://localhost:8888/user/login?type=email
+Content-Type: application/json
+
+{
+  "email": "wingswad@gmail.com",
+  "password": "wadwings"
+}
+###
+POST http://localhost:8888/user/login?type=username
+Content-Type: application/json
+
+{
+  "username": "wadwings",
+  "password": "wadwings"
+}
+###
+POST http://tx.dedsec.site:8888/user/register
+Content-Type: application/json
+
+{
+"username": "wadwings",
+"password": "wadwings",
+"email": "wingswad@gmail.com"
+}
+
+###
+POST http://tx.dedsec.site:8888/user/login?type=username
+Content-Type: application/json
+
+{
+  "username": "wadwings",
+  "password": "wadwings"
+}
+###
+POST http://tx.dedsec.site:8888/question/item
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsInVzZXJuYW1lIjoid2Fkd2luZ3MiLCJpc19hZG1pbiI6dHJ1ZSwiZXhwIjoxNjM5OTI2NjY4fQ.AkIMgrLtT14qpUvhD2cwFFh2IB6Q9lOHNvz9oG3g8oVfSQI5IwKC5YNbkCXnlkuGTZcUc3IQrm9higN4uhTz4g
+
+{
+  "title": "1.A+BProblem",
+  "content": "输入 a 和 b，输出 a+b 的结果。一行两个正整数 a 和 b。一行一个正整数 a+b。对于 100% 的数据，1≤a,b≤10​6​​。",
+  "sample": [
+    {
+      "in": "1 2",
+      "out": "3"
+    }
+  ],
+  "test": [
+    {
+      "in": "233 555\n",
+      "out": "788\n"
+    },
+    {
+      "in":"1000000 1000000\n",
+      "out":"2000000\n"
+    },
+    {
+      "in": "1 2\n",
+      "out":"3\n"
+    }
+  ]
+}
+
+###
+GET http://tx.dedsec.site:8888/question/item/1
+Authorization: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsInVzZXJuYW1lIjoid2Fkd2luZ3MiLCJpc19hZG1pbiI6dHJ1ZSwiZXhwIjoxNjM5OTIyMjA4fQ.0OFX6q_Gq4rcMcqmdK6hLwCedwzHua9smqiPyK70hfMlDWjwyKt4oPFq7OjQCX1Zo5wQXrRxKcWsxhv-XYaqhw
