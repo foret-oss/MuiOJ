@@ -34,7 +34,7 @@ const wrapLoginRequest = async (
     body: JSON.stringify(jsonData),
   };
   try {
-    const data = await fetch(`${conf.baseUrl}${url}`, opts).then((result) =>
+      const data = await fetch(`${conf.baseUrl}${url}`, opts).then((result) =>
       result.json()
     )
     console.log("resposeData：",data)

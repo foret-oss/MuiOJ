@@ -25,6 +25,6 @@ export default defineConfig({
     minify: 'esbuild',
   },
   plugins: [
-    react(),
+    react()
   ],
 })

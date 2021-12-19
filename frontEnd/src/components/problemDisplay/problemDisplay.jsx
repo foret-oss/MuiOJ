@@ -1,5 +1,5 @@
 import './problemDisplay.css'
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import Tab from '@mui/material/Tab';
 import styled from "@emotion/styled";
 import List from '@mui/material/List';
@@ -14,43 +14,35 @@ import { Link } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
+import GetProblem from '@apis/problem/problem'
 
 
 export default class ProblemDisplay extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       page: 1
     }
   }
 
+  problemUrl = "/question/list"
+
   problemList = [
-    { id: '1', title: 'aa' },
-    { id: '2', title: 'bb' },
-    { id: '3', title: 'cc' },
-    { id: '4', title: 'dd' },
-    { id: '5', title: 'dd' },
-    { id: '6', title: 'dd' }
   ]
 
   styles = { textDecoration: "none", color: "#71838f" }
 
   handleChange = (event, value) => {
-    this.setState ({page: value })
+    this.setState({ page: value })
     console.log("now Page:", this.state.page);
   };
 
-  componentDidMount() 
-  { 
-    this.problemList = [
-    { id: '7', title: 'aa' },
-    { id: '8', title: 'bb' },
-    { id: '9', title: 'cc' },
-    { id: '10', title: 'dd' },
-    { id: '11', title: 'dd' },
-    { id: '12', title: 'dd' }
-    ]
+  componentDidMount() {
+    const res = GetProblem(this.problemUrl + '/' + this.state.page)
+    this.problemList = res.message
+    console.log("this.problemList:", res)
   }
+     
 
   render() {
     return (
@@ -80,7 +72,7 @@ export default class ProblemDisplay extends Component {
         </Stack>
       </div>
     );
-      
+
   }
 
 
