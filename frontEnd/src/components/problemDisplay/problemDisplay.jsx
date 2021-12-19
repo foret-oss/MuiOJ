@@ -25,15 +25,9 @@ export default class ProblemDisplay extends Component {
     }
   }
 
-  problemUrl = "/question/item"
+  problemUrl = "/question/list"
 
   problemList = [
-    { id: '1', title: 'aa' },
-    { id: '2', title: 'bb' },
-    { id: '3', title: 'cc' },
-    { id: '4', title: 'dd' },
-    { id: '5', title: 'dd' },
-    { id: '6', title: 'dd' }
   ]
 
   styles = { textDecoration: "none", color: "#71838f" }
@@ -44,47 +38,42 @@ export default class ProblemDisplay extends Component {
   };
 
   componentDidMount() {
-    GetProblem(this.problemUrl + "/1")
-    this.problemList = [
-  { id: '7', title: 'aa' },
-  { id: '8', title: 'bb' },
-  { id: '9', title: 'cc' },
-  { id: '10', title: 'dd' },
-  { id: '11', title: 'dd' },
-  { id: '12', title: 'dd' }
-]
+    const res = GetProblem(this.problemUrl + '/' + this.state.page)
+    this.problemList = res.message
+    console.log("this.problemList:", res)
   }
+     
 
-render() {
-  return (
-    <div className='problemContainer'>
-      <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-        {
-          //maps循环
-          this.problemList.map(item => {
-            return (
-              <ListItem key={item.id}>
-                <ListItemAvatar>
-                  <Avatar>
-                    <BeachAccessIcon />
-                  </Avatar>
-                </ListItemAvatar>
-                <Link to={'/edit'} style={this.styles}>
-                  <ListItemText primary={item.title} secondary={item.id} />
-                </Link>
-              </ListItem>
-            )
-          })
-        }
-      </List>
-      <Stack spacing={2}>
-        <Typography>Page: {this.state.page}</Typography>
-        <Pagination count={10} page={this.state.page} onChange={this.handleChange} />
-      </Stack>
-    </div>
-  );
+  render() {
+    return (
+      <div className='problemContainer'>
+        <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+          {
+            //maps循环
+            this.problemList.map(item => {
+              return (
+                <ListItem key={item.id}>
+                  <ListItemAvatar>
+                    <Avatar>
+                      <BeachAccessIcon />
+                    </Avatar>
+                  </ListItemAvatar>
+                  <Link to={'/edit'} style={this.styles}>
+                    <ListItemText primary={item.title} secondary={item.id} />
+                  </Link>
+                </ListItem>
+              )
+            })
+          }
+        </List>
+        <Stack spacing={2}>
+          <Typography>Page: {this.state.page}</Typography>
+          <Pagination count={10} page={this.state.page} onChange={this.handleChange} />
+        </Stack>
+      </div>
+    );
 
-}
+  }
 
 
 }

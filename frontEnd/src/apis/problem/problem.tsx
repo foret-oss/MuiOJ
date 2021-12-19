@@ -3,17 +3,15 @@ import conf from "@config/conf";
 import React from 'react'
 import Snackbar from '@mui/material/Snackbar';
 
-interface RestForm {
-  [key: string]: string
-}
-
-//const getProblem = "/question/item"
+// interface RestForm {
+//   [key: string]: string
+// } 
 
 
 
 const getProblemRequest = async (
-  url: string,
-  jsonData: Record<string, unknown>
+  url: string
+//   jsonData: Record<string, unknown>
 ): Promise<string> => {
   //initialize fetch options
   const opts: RequestInit = {
@@ -29,16 +27,18 @@ const getProblemRequest = async (
     )
     console.log("request body:", opts.body)
     console.log("success resbouse:",data)
-    window.sessionStorage.setItem("registerData:",JSON.stringify(data) )
+    window.sessionStorage.setItem("problemList:",JSON.stringify(data) )
     return data
   } catch ({ response }) {
-      console.log("request Url:", `${conf.baseUrl}${url}`)
-    console.log("request body:", opts.body)
-    console.log("error response:",response);
     console.log("request body:", opts)
-    throw Error("send http request failed");
+    throw Error("send http request failed")
   }
 };
+
+const test = () => {
+    let listData = getProblemRequest("/question/list/1")
+    console.log("ListData",listData)
+}
 
 export default getProblemRequest
 
