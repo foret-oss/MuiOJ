@@ -2,10 +2,10 @@ import React, { Component, useRef } from 'react';
 //import logo from './logo.svg';
 //import './App.css';
 import {useEffect} from 'react'
-import { render } from 'react-dom'
 import Editor, {loader} from "@monaco-editor/react";
 import type {Monaco} from '@monaco-editor/react';
 import useTheme from './config'
+import styles from './editor.module.css'
 
 const defaultCode =
   `export default {
@@ -20,7 +20,8 @@ const MonacoEditor = () => {
     useTheme(monaco)
   }
   return (
-    <Editor height="70vh" defaultLanguage="javascript" defaultValue="" onMount={handleEditorDidMount}></Editor>
+    
+    <Editor height="50vh" defaultLanguage="javascript" defaultValue="" onMount={handleEditorDidMount}></Editor>
   )
 }
 

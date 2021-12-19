@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
-import GetProblem from '@apis/problem/problem'
+import GetProblem from '@apis/common/authRequest'
 
 
 export default class ProblemDisplay extends Component {
@@ -23,7 +23,7 @@ export default class ProblemDisplay extends Component {
     this.state = {
       page: 1,
       problemList : [],
-      problemUrl : "/question/list"
+      problemUrl : "/question/list/"
     }
   }
 
@@ -31,15 +31,15 @@ export default class ProblemDisplay extends Component {
 
   handleChange = (event, value) => {
     this.setState({ page: value })
-    const res = GetProblem(this. state.problemUrl + '/' + this.state.page)
+    const res = GetProblem(this.state.problemUrl+ this.state.page, {})
     res.then(res => {
       this.setState({ problemList: res.message})
-      //console.log("this.problemList", this.state.problemList)
+      console.log("this.problemList", this.state.problemList)
     })
   };
 
   componentDidMount() {
-    const res = GetProblem(this. state.problemUrl + '/' + this.state.page)
+    const res = GetProblem(this. state.problemUrl + this.state.page,{})
     res.then(res => {
       this.setState({ problemList: res.message})
       console.log("this.problemList", this.state.problemList)
@@ -81,15 +81,3 @@ export default class ProblemDisplay extends Component {
 
 }
 
-
-// const MyTab = styled(Tab)`
-//   margin-top: 0rem;
-//   font-size: 1rem;
-//   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-// `;
-
-// const MyTabPanel = styled(TabPanel)`
-//    width: 80%;
-//    margin-top: -25rem;
-//    z-index : 0;
-// `;
