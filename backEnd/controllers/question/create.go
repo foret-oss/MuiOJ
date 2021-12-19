@@ -8,16 +8,8 @@ import (
 )
 
 func Create(c *gin.Context) {
-	authObject, err := auth.GetAuthObj(c)
+	authObject, err := auth.GetAuthObjWithAdmin(c)
 	if err != nil {
-		c.JSON(400, gin.H{
-			"code":    400,
-			"message": err.Error(),
-		})
-	}
-
-	isAdmin := authObject.IsAdmin
-	if !isAdmin {
 		c.JSON(400, gin.H{
 			"code":    400,
 			"message": err.Error(),

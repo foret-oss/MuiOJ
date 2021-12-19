@@ -27,11 +27,21 @@ func Edit(uid, tid uint32, questionEditForm *forms.QuestionEditForm) error {
 			Content: questionEditForm.Content,
 			Sample: questionEditForm.Sample,
 		}
-		if _, err := session.Table("question").
+		if _, err := session.Table("question_content").
 			Where("tid = ?", tid).
 			Cols("content", "sample").
 			Update(&questionContent); err != nil {
 				return nil, err
+		}
+		questionJudge := models.QuestionJudge{
+			DatasetCount: uint32(len(questionEditForm.Test)),
+			Dataset:      questionEditForm.Test,
+		}
+		if _, err := session.Table("question_judge").
+			Where("tid = ?", tid).
+			Cols("dataset_count", "dataset").
+			Update(&questionJudge); err != nil {
+			return nil, err
 		}
 		return nil, nil
 	})

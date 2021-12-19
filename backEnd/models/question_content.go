@@ -3,10 +3,10 @@ package models
 type QuestionContent struct {
 	Tid     uint32   `json:"tid"`
 	Content string   `json:"content"`
-	Sample  []Sample `json:"sample"`
+	Sample  []Test `json:"sample"`
 }
 
-type Sample struct {
+type Test struct {
 	In  string `json:"in"`
 	Out string `json:"out"`
 }

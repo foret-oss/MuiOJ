@@ -9,5 +9,6 @@ type QuestionEditForm struct {
 	SpaceLimit uint32          `json:"space_limit omitempty"`
 	Content    string          `json:"content" binding:"required"`
 	Hide       bool            `json:"hide omitempty"`
-	Sample     []models.Sample `json:"sample" binding:"required"`
+	Sample     []models.Test `json:"sample" binding:"required"`
+	Test	   []models.Test `json:"test" binding:"required"`
 }

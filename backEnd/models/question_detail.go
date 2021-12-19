@@ -14,5 +14,5 @@ type QuestionDetail struct {
 	SpaceLimit uint32    `json:"space_limit"`
 	CreatedAt   time.Time `json:"create_at"`
 	Content string   `json:"content"`
-	Sample  []Sample `json:"sample"`
+	Sample  []Test `json:"sample"`
 }

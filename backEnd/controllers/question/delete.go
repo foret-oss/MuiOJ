@@ -8,7 +8,7 @@ import (
 )
 
 func Delete(c *gin.Context) {
-	authObject, err:= auth.GetAuthObj(c)
+	_, err:= auth.GetAuthObjWithAdmin(c)
 	if err != nil {
 		c.JSON(400, gin.H{
 			"code": 400,
@@ -16,13 +16,7 @@ func Delete(c *gin.Context) {
 		})
 		return
 	}
-	if !authObject.IsAdmin {
-		c.JSON(403, gin.H{
-			"code": 403,
-			"message": "access denied",
-		})
-		return
-	}
+
 	tid, err := strconv.Atoi(c.Param("tid"))
 	if err != nil {
 		c.JSON(400, gin.H{

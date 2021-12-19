@@ -4,24 +4,16 @@ import (
 	"MuiOJ-backEnd/controllers/auth"
 	"MuiOJ-backEnd/models/forms"
 	"MuiOJ-backEnd/services/question"
-	"errors"
 	"github.com/gin-gonic/gin"
 	"strconv"
 )
 
 func Edit(c *gin.Context){
-	authObject, err := auth.GetAuthObj(c)
+	authObject, err := auth.GetAuthObjWithAdmin(c)
 	if err != nil {
 		c.JSON(400, gin.H{
 			"code": 400,
 			"message": err.Error(),
-		})
-		return
-	}
-	if !authObject.IsAdmin {
-		c.JSON(403, gin.H{
-			"code": 403,
-			"message": errors.New("access denied"),
 		})
 		return
 	}

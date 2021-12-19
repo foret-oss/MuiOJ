@@ -20,6 +20,12 @@ func Delete(tid uint32) error{
 		}); err != nil {
 				return nil, err
 		}
+		if _, err := session.Table("question_judge").
+			Delete(&models.QuestionContent{
+				Tid: tid,
+			}); err != nil {
+			return nil, err
+		}
 		return nil, nil
 	})
 	return err
