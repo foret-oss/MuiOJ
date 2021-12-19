@@ -28,7 +28,7 @@ services:
 #    tty: true
 #    restart: always
   server:
-    image: wadwings/muioj_backend:v1
+    image: wadwings/muioj_backend:latest
     ports:
       - "8888:8888"
       - "8090:8090"
