@@ -40,9 +40,6 @@ const Header: FC<HeaderProps> = ({username}) => {
                                 <StyledLink to={"/login"} >登录</StyledLink>}
                 </HeaderBlock>
             </HeaderLayout>
-            <ContentLayout>
-                {/* <Content /> */}
-            </ContentLayout>
         </HeaderOutside>
     )
 }

@@ -47,11 +47,11 @@ const rows = [
 
 export default function CustomizedTables() {
   return (
-    
-    <TableContainer sx={{ minWidth: "100px" }} component={Paper} className="table-container">
+    <Flex>
+    <TableContainer component={Paper} className="table-container">
       <Table aria-label="customized table">
-        <TableHead>
-        <h3>公告栏</h3>
+        <TableHead className="tableHead">
+        <H3>公告栏</H3>
           <TableRow>
             <StyledTableCell>Notice</StyledTableCell>
             <StyledTableCell align="right"></StyledTableCell>
@@ -74,5 +74,17 @@ export default function CustomizedTables() {
         </TableBody>
       </Table>
     </TableContainer>
+    </Flex>
   );
 }
+
+const H3 = styled('h3')`
+  padding-left: 3rem;
+`
+
+const Flex = styled('div')`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
