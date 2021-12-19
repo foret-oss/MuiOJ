@@ -13,15 +13,8 @@ export default class extends React.Component {
     return (
       <Router>
       </Router>
-      // <div>
-      // <Header></Header>
-      // <TabPanel></TabPanel>
-      // <Login></Login>
-      
-      // </div>
     )
   }
 }
 
 
-// export default App;

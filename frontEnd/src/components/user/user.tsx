@@ -34,10 +34,14 @@ function createData(
     return { name, data };
 }
 
-const user = window.sessionStorage.getItem('loginData') !== null ? JSON.parse(window.sessionStorage.getItem('loginData') || '') : null;
+interface userForm {
+    [key: string]: string
+  }
+
+const user : userForm = window.sessionStorage.getItem('loginData') !== null ? JSON.parse(window.sessionStorage.getItem('loginData') || '') : null;
 
 const rows = [
-    createData('用户名', user == null ? "" : user.usename),
+    createData('用户名', user == null ? "" : user.username),
     createData('用户ID', user == null ? "": user.uid.toString()),
     createData('用户邮箱', '3313696160@qq.com'),
     createData('是否管理员', user == null ? "": user.isAdmin.toString())
@@ -58,7 +62,7 @@ const Main: FunctionComponent<unknown> = () => {
                     </TableHead>
                     <TableBody>
                         {rows.map((row) => (
-                            <TableRow>
+                            <TableRow key = {row.name}>
                                 <TableCell component="th" scope="row">
                                     {row.name}
                                 </TableCell>
