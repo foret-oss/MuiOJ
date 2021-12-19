@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import ProblemDisplay from '@src/components/problemDisplay/problemDisplay';
 import './Content.css'
-import Main from '@src/components/main/main'
+import Main from '@components/board/board'
 import Submit from '@src/components/submission/submit'
 import {useState} from 'react'
 import styled from '@emotion/styled'

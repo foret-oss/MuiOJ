@@ -7,7 +7,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import './main.css'
+import './board.css'
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: '#a6c1ee',
@@ -49,7 +49,7 @@ export default function CustomizedTables() {
   return (
     
     <TableContainer sx={{ minWidth: "100px" }} component={Paper} className="table-container">
-      <Table sx={{ width: "84%" }} aria-label="customized table">
+      <Table aria-label="customized table">
         <TableHead>
         <h3>公告栏</h3>
           <TableRow>

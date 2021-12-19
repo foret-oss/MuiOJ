@@ -38,13 +38,13 @@ interface userForm {
     [key: string]: string
   }
 
-const user : userForm = window.sessionStorage.getItem('loginData') !== null ? JSON.parse(window.sessionStorage.getItem('loginData') || '') : null;
+const user : userForm = JSON.parse(window.sessionStorage.getItem('loginData') || '');
 
 const rows = [
-    createData('用户名', user == null ? "" : user.username),
-    createData('用户ID', user == null ? "": user.uid.toString()),
+    createData('用户名', user?.username),
+    createData('用户ID', user?.uid?.toString()),
     createData('用户邮箱', '3313696160@qq.com'),
-    createData('是否管理员', user == null ? "": user.isAdmin.toString())
+    createData('是否管理员', user?.isAdmin?.toString() || "否")
 ];
 
 
