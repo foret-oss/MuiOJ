@@ -143,7 +143,7 @@ CREATE TABLE `question_judge` (
                                   `mode` char(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
                                   `dataset_count` int(10) UNSIGNED NOT NULL,
                                   `version` int(10) UNSIGNED NOT NULL DEFAULT '0',
-                                  `case` json NOT NULL
+                                  `dataset` json NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
