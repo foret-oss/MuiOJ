@@ -144,7 +144,7 @@ const LoginForm: FunctionComponent<unknown> = () => {
       >
         Next
       </LoginSubmitButton>
-      <RegisterButton><Link to={'/register'}>Register</Link></RegisterButton>
+      <RegisterButton><Link to={'/register'} style={{textDecoration: "none", color:"#1976d2"}}>Register</Link></RegisterButton>
       <LoginSwitch></LoginSwitch>
     </FormLayout>
   );
@@ -178,21 +178,15 @@ const LoginInputArea = styled(TextField)`
   position: relative;
 `;
 
-const QuerySms = styled(Button)`
-  position: absolute;
-  right: 0;
-  min-width: 100px;
-  height: calc(100% - 1rem);
-`
 
 const LoginSubmitButton = styled(Button)`
   margin: 2rem 0 1rem;
-  margin-right: 10rem;
+  padding-right: 15rem;
   background-color: "#1e68f9"
 `;
 
 const RegisterButton = styled(Button)`
- margin-left: 10rem;
+ margin-left: 13rem;
  margin-top: -3.5rem;
 `
 

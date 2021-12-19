@@ -9,7 +9,7 @@ class Header extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: "尚未登录",
+            username: "",
             isLogin: false,
             value: 0
         };
@@ -17,11 +17,12 @@ class Header extends Component {
 
 
     componentDidMount() {
-        const data = window.sessionStorage.getItem('loginData') == undefined ? '' : window.sessionStorage.getItem('loginData')
-        if (data.token !== '') 
+        const data = window.sessionStorage.getItem('loginData') !== null ? JSON.parse(window.sessionStorage.getItem('loginData')) : null;
+        if (data !== null) 
         {
-            console.log("isLogin:",data)
+            console.log("LoginName:",typeof (data))
             this.setState ({username:data.username})
+            this.setState({isLogin:true})
         } 
     }
 
@@ -35,6 +36,8 @@ class Header extends Component {
         this.setState({ isLogin: false})
     }
 
+    styles = {textDecoration: "none" , color: "#71838f"}
+
     render() {
         return (
             <div>
@@ -44,10 +47,11 @@ class Header extends Component {
                         &ensp;Online Judge
                     </h1>
                     <div className='userName'>
-                        <p>{this.state.username}&emsp;&ensp;</p>
-                        {this.state.isLogin === true && <p className='Loginstatus' onClick={this.logout}>登出</p>}
+                        <p> <Link to={'/user'} style={this.styles}>{this.state.username}&emsp;&ensp;</Link></p>
+                        {this.state.isLogin === true && <p className='Loginstatus' onClick={this.logout}>
+                        <Link to={"/login"} style={this.styles}>退出</Link></p>}
                         {this.state.isLogin === false && <p className='Loginstatus'>
-                            <Link to={"/login"}>登录</Link></p>}
+                            <Link to={"/login"} style={this.styles}>登录</Link></p>}
                     </div>
                 </div>
                 <Content className='TabPanel'></Content>

@@ -10,6 +10,7 @@ import Avatar from '@mui/material/Avatar';
 import ImageIcon from '@mui/icons-material/Image';
 import WorkIcon from '@mui/icons-material/Work';
 import BeachAccessIcon from '@mui/icons-material/BeachAccess';
+import { Link } from 'react-router-dom'
 
 
 export default function ProblemDisplay() {
@@ -23,6 +24,8 @@ export default function ProblemDisplay() {
     { id: '4', title: 'dd' }
   ]
 
+  const styles = {textDecoration: "none" , color: "#71838f"}
+
   return (
     <div className='problemContainer'>
       <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
@@ -30,18 +33,20 @@ export default function ProblemDisplay() {
           //maps循环
           problemList.map(item => {
             return (
-            <ListItem key={item.id}>
-              <ListItemAvatar>
-                <Avatar>
-                  <ImageIcon />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText primary={item.title} secondary={item.id} />
-            </ListItem>
+              <ListItem key={item.id}>
+                <ListItemAvatar>
+                  <Avatar>
+                    <WorkIcon />
+                  </Avatar>
+                </ListItemAvatar>
+                <Link to={'/edit'} style={styles}>
+                  <ListItemText primary={item.title} secondary={item.id} />
+                </Link>
+              </ListItem>
             )
           })
         }
-        </List>
+      </List>
     </div>
   );
 }

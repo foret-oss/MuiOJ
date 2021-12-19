@@ -67,7 +67,7 @@ export default function BasicTabs() {
         竞赛
       </TabPanel>
       <TabPanel value={value} index={2}>
-          <MyProblemDisplay className="ProblemDisplay"></MyProblemDisplay>
+          <ProblemDisplay className="ProblemDisplay"></ProblemDisplay>
       </TabPanel>
       <TabPanel value={value} index={3}>
         题库
@@ -79,7 +79,7 @@ export default function BasicTabs() {
   );
 }
 
-const MyProblemDisplay = styled(ProblemDisplay) `
-  margin-top:20rem;
-  top:20rem;
-`;
+// const MyProblemDisplay = styled(ProblemDisplay) `
+//   margin-top:20rem;
+//   top:20rem;
+// `;
