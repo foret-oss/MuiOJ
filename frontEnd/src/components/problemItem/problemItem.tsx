@@ -1,13 +1,17 @@
 
-import {FC} from 'react'
+import {FC, useEffect, useState} from 'react'
+import request from '@apis/common/authRequest'
 
 interface ProblemItemProps {
-  id: number
+  tid: number
 }
 
-const ProblemItem : FC<ProblemItemProps> = (props) => {
-  const {id} = props
-  
+const ProblemItem : FC<ProblemItemProps> = ({tid}) => {
+  const [data, setData] = useState({})
+  useEffect(() => {
+    request('item/' + tid, {}).then(res => setData(res))
+  }, [])
+  console.log("data", data)
   return <div></div>
 }
 

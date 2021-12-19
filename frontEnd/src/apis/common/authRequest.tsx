@@ -11,17 +11,14 @@ import Snackbar from '@mui/material/Snackbar';
 
 const RequestWithAuth = async (
   url: string,
-  method: string,
+  opts: RequestInit,
 //   jsonData: Record<string, unknown>
 ): Promise<string> => {
   //initialize fetch options
-  const opts: RequestInit = {
-    method: method,
-    mode: "cors",
-    headers: {
-      "Authorization": window.sessionStorage.getItem("token") || ''
-    }
-  };
+  opts.mode = "cors"
+  opts.headers = Object.assign(opts.headers, {
+    "Authorization": window.sessionStorage.getItem("token") || ''
+  })
   try {
     const data = await fetch(`${conf.baseUrl}${url}`, opts).then((result) =>
       result.json()
