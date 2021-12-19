@@ -9,13 +9,14 @@ import Snackbar from '@mui/material/Snackbar';
 
 
 
-const getProblemRequest = async (
-  url: string
+const RequestWithAuth = async (
+  url: string,
+  method: string,
 //   jsonData: Record<string, unknown>
 ): Promise<string> => {
   //initialize fetch options
   const opts: RequestInit = {
-    method: "GET",
+    method: method,
     mode: "cors",
     headers: {
       "Authorization": window.sessionStorage.getItem("token") || ''
@@ -25,9 +26,6 @@ const getProblemRequest = async (
     const data = await fetch(`${conf.baseUrl}${url}`, opts).then((result) =>
       result.json()
     )
-    console.log("request body:", opts.body)
-    console.log("success resbouse:",data)
-    window.sessionStorage.setItem("problemList:",JSON.stringify(data) )
     return data
   } catch ({ response }) {
     console.log("request body:", opts)
@@ -35,12 +33,7 @@ const getProblemRequest = async (
   }
 };
 
-const test = () => {
-    let listData = getProblemRequest("/question/list/1")
-    console.log("ListData",listData)
-}
-
-export default getProblemRequest
+export default RequestWithAuth
 
 // export default {
 //   [registerType.Register]: async (form: RestForm): Promise<string> => {

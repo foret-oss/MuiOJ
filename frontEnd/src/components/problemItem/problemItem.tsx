@@ -1,7 +1,12 @@
 
-import 'react'
+import {FC} from 'react'
 
-const ProblemItem = () => {
+interface ProblemItemProps {
+  id: number
+}
+
+const ProblemItem : FC<ProblemItemProps> = (props) => {
+  const {id} = props
   
   return <div></div>
 }
