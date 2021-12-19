@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './header.css'
-import Content from "@/layouts/Content"
+import Content from "@src/layouts/Content"
 import { Link } from 'react-router-dom'
 import { loginMessage } from '@apis/login/rest'
 
