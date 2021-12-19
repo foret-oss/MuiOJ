@@ -1,0 +1,13 @@
+
+a{
+  text-decoration: none;
+}
+a:link{color:#a6c1ee;text-decoration:none}
+a:hover{color:#8fd3f4;text-decoration:underline}
+
+
+.table-container {
+  width:75%;
+  margin-top: 50px;
+  margin-left: -20px;
+}

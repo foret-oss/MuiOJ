@@ -7,9 +7,17 @@
     "serve": "vite preview --host"
   },
   "dependencies": {
+    "@emotion/css": "^11.7.1",
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
+    "@mui/material": "^5.2.4",
+    "@mui/styles": "^5.2.3",
     "eslint-config-airbnb": "^18.2.1",
     "react": "^17.0.0",
-    "react-dom": "^17.0.0"
+    "react-dom": "^17.0.0",
+    "react-router": "^6.1.1",
+    "react-router-dom": "^6.1.1",
+    "styled-components": "^5.3.3"
   },
   "devDependencies": {
     "@types/react": "^17.0.0",

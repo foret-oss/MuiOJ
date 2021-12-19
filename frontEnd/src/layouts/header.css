@@ -1,0 +1,65 @@
+.header {
+    position: fixed;
+    width: 90%;
+    height: 100px;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:flex-start ;
+}
+.title {
+    margin-left: 150px;
+    display: flex;
+    min-width: 20rem;
+}
+.userName {
+    display: flex;
+    font-size: 18px;
+    margin-left: 50%;
+    min-width: 15rem;
+}
+.Loginstatus {
+    color: #71838f;
+}
+.container-fluid {
+    position: fixed;
+    width: 80%;
+    margin-top: 100px;
+    margin-left: 150px;
+    align-items: center;
+    box-shadow: 0px 0px 1px #888888;
+}
+.navbarNav {
+    margin-left: -50px;
+    font-size: 18px;
+    border-radius: 1rem;
+}
+ul {
+    list-style: none;
+}
+li {
+    display: inline;
+}
+.navbarNav > li {
+    float: left;
+    display: block;
+}
+.navbarNav > li > a {
+    position: relative;
+    display: block;
+    padding: 1rem 1rem;
+    text-decoration: none;
+    background-color: transparent;
+}
+.css-8atqhb {
+    margin-top: 5.5rem;
+    margin-left: 9rem;
+}
+.TabPanel {
+    position: fixed;
+    width: 80%;
+    background-color : #f4f7f5;
+    border-radius: 6px;
+}

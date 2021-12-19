@@ -26,8 +26,10 @@
       "@styles/*": ["./src/styles/*"],
       "@utils/*": ["./src/utils/*"],
       "@views/*": ["./src/views/*"],
-      "@src/*": ["./src/*"]
-    }
+      "@src/*": ["./src/*"],
+      "@*": ["./src/*"],
+      "@constants/*": ["./src/constants/*"]
+        }
   },
   "include": ["./src"]
 }
