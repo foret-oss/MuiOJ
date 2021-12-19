@@ -4,6 +4,7 @@ import (
 	"MuiOJ-backEnd/models"
 	"MuiOJ-backEnd/models/forms"
 	"MuiOJ-backEnd/services/db"
+	"fmt"
 	"time"
 	"xorm.io/xorm"
 )
@@ -20,9 +21,6 @@ func Create(uid uint32, questionForm *forms.QuestionEditForm) (int, error){
 			SpaceLimit: questionForm.SpaceLimit,
 			CreatedAt: time.Now(),
 		}
-		if err := session.Begin(); err != nil {
-			return InvalidTid, err
-		}
 		_, err := session.Table("question").Insert(&questionOverview)
 		if err != nil {
 			return InvalidTid, err
@@ -34,6 +32,7 @@ func Create(uid uint32, questionForm *forms.QuestionEditForm) (int, error){
 		if !has {
 			return InvalidTid, nil
 		}
+		fmt.Println("test")
 		questionContent := models.QuestionContent{
 			Tid: questionOverview.Tid,
 			Content: questionForm.Content,

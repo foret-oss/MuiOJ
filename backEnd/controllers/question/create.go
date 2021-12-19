@@ -14,6 +14,7 @@ func Create(c *gin.Context) {
 			"code":    400,
 			"message": err.Error(),
 		})
+		return
 	}
 
 	questionCreateForm := forms.QuestionEditForm{}
@@ -22,6 +23,7 @@ func Create(c *gin.Context) {
 			"code":    400,
 			"message": err.Error(),
 		})
+		return
 	}
 
 	tid, err := QuestionService.Create(

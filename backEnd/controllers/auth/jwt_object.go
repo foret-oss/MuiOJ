@@ -27,7 +27,7 @@ func GetAuthObjWithAdmin(c *gin.Context) (*Claims, error) {
 	if !ok {
 		return nil, errors.New("token format invalid")
 	}
-	if !authObject.IsAdmin{
+	if authObject.IsAdmin != true{
 		return nil, errors.New("admin required")
 	}
 	return authObject, nil
