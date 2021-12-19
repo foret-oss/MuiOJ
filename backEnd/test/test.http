@@ -76,7 +76,7 @@ GET http://tx.dedsec.site:8888/question/item/1
 Authorization: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsInVzZXJuYW1lIjoid2Fkd2luZ3MiLCJpc19hZG1pbiI6dHJ1ZSwiZXhwIjoxNjQwMDE2Mjg3fQ.GjN3NaZaxDlneoRsHKl9A4DOJoOUXa8lSAXbwRjg3jQDtKFPHxFwP4a7Lx7BeDMin6klFjsjapgAffsw8S3xqQ
 
 ###
-POST http://localhost:8888/question/item/2
+POST http://tx.dedsec.site:8888/question/item/1
 Authorization: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsInVzZXJuYW1lIjoid2Fkd2luZ3MiLCJpc19hZG1pbiI6dHJ1ZSwiZXhwIjoxNjQwMDE2Mjg3fQ.GjN3NaZaxDlneoRsHKl9A4DOJoOUXa8lSAXbwRjg3jQDtKFPHxFwP4a7Lx7BeDMin6klFjsjapgAffsw8S3xqQ
 Content-Type: application/json
 
