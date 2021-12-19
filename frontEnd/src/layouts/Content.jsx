@@ -6,7 +6,8 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import ProblemDisplay from '@src/components/problemDisplay/problemDisplay';
 import './Content.css'
-import Container from '@src/components/container/container'
+import Main from '@src/components/main/main'
+import Submit from '@src/components/submission/submit'
 import styled from "@emotion/styled";
 
 function TabPanel(props) {
@@ -61,7 +62,7 @@ export default function BasicTabs() {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        学习
+        <Main></Main>
       </TabPanel>
       <TabPanel value={value} index={1}>
         竞赛
@@ -73,7 +74,7 @@ export default function BasicTabs() {
         题库
       </TabPanel>
       <TabPanel value={value} index={4}>
-        提交记录
+        <Submit></Submit>
       </TabPanel>
     </Box>
   );

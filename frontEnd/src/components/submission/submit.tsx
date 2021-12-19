@@ -95,7 +95,7 @@ export default function ColumnGroupingTable() {
   };
 
   return (
-    <Paper sx={{ width: '84%', marginTop: '50px',marginLeft: '112px' ,}}>
+    <Paper sx={{ width: '84%', marginTop: '50px',marginLeft: '-1rem' ,}}>
       <TableContainer sx={{ maxHeight: 440,maxWidth:'100%' }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>

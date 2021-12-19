@@ -62,7 +62,7 @@ export default class ProblemDisplay extends Component {
                     </Avatar>
                   </ListItemAvatar>
                   <Link to={'/edit'} style={this.styles}>
-                    <ListItemText primary={item.title} secondary={item.id} />
+                    <ListItemText primary={item.title} secondary={"提交次数："+ item.accept} />
                   </Link>
                 </ListItem>
               )

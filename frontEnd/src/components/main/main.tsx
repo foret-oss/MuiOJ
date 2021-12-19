@@ -48,8 +48,8 @@ const rows = [
 export default function CustomizedTables() {
   return (
     
-    <TableContainer component={Paper} className="table-container">
-      <Table sx={{ minWidth: 500 }} aria-label="customized table">
+    <TableContainer sx={{ minWidth: "100px" }} component={Paper} className="table-container">
+      <Table sx={{ width: "84%" }} aria-label="customized table">
         <TableHead>
         <h3>公告栏</h3>
           <TableRow>
