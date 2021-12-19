@@ -10,7 +10,7 @@ import loginMethod from "@apis/login/rest";
 import { loginMessage } from "@apis/login/rest"
 import Snackbar from '@mui/material/Snackbar';
 import { createBrowserHistory } from "history";
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 //路由有问题，不能在点击时就跳转，需要刷新一次在跳转
 
@@ -44,7 +44,7 @@ const Main = styled.div`
 
 const LoginForm: FunctionComponent<unknown> = () => {
   const [loginType, setLoginType] = useState(LoginType.Email);
-
+  const navigate = useNavigate();
   //弹框
   const [open,setOpen] = React.useState(false)
   const [snackbarMessage,setSnackbarMessage] = React.useState('')
@@ -71,6 +71,7 @@ const LoginForm: FunctionComponent<unknown> = () => {
         <LoginInputArea
           id={item}
           label={item}
+          type={item === 'password' ? 'password' : ''}
           variant={"outlined"}
         ></LoginInputArea>
 
@@ -93,22 +94,22 @@ const LoginForm: FunctionComponent<unknown> = () => {
       const value = ele?.value;
       opts[id] = value;
     }
-    loginMethod[loginType](opts);
-    console.log("loginMessage:", loginMessage)
-
-    //处理登录token及弹框数据
-    if (loginMessage.code === 200) {
-      window.sessionStorage.setItem('token', loginMessage.token.toString())
-      //有问题，不能及时渲染
-      setSnackbarMessage("Login Succesfully!")
-      setOpen(true)
-      window.sessionStorage.setItem("loginData",JSON.stringify(loginMessage))
-      history.push('./')
-    }
-    else {
-      setOpen(true)
-      setSnackbarMessage("Login Error!") 
-    }
+    loginMethod[loginType](opts).then((loginMessage:any) => {
+      console.log("loginMessage:", loginMessage)
+      //处理登录token及弹框数据
+      if (loginMessage.code === 200) {
+        window.sessionStorage.setItem('token', loginMessage.message.token.toString())
+        //有问题，不能及时渲染
+        setSnackbarMessage("Login Succesfully!")
+        setOpen(true)
+        window.sessionStorage.setItem("loginData",JSON.stringify(Object.assign(loginMessage.message, {"code": loginMessage.code})))
+        navigate('/')
+      }
+      else {
+        setOpen(true)
+        setSnackbarMessage("Login Error!") 
+      }
+    });
   };
 
 
