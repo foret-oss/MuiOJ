@@ -67,6 +67,9 @@ const ProblemItem = (props) => {
     })
   }, [])
 
+
+  
+
   console.log("ProblemItemData", data)
 
   return (<div className={styles.container}>

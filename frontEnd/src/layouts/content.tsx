@@ -85,3 +85,7 @@ import {FC} from 'react'
 //   margin-top:20rem;
 //   top:20rem;
 // `;
+
+export default function Content()  {
+    return <div></div>
+}
