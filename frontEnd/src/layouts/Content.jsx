@@ -4,9 +4,9 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import ProblemDisplay from '@/components/problemDisplay/problemDisplay';
+import ProblemDisplay from '@src/components/problemDisplay/problemDisplay';
 import './Content.css'
-import Container from '@/components/container/container'
+import Container from '@src/components/container/container'
 import styled from "@emotion/styled";
 
 function TabPanel(props) {
