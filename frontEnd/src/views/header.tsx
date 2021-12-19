@@ -1,6 +1,6 @@
 import React, { Component, FC, useEffect, useState } from 'react';
 import './header.css'
-// import Content from "@layouts/content"
+// import Content fro@layouts/Content
 import { Link } from 'react-router-dom'
 import { loginMessage } from '@apis/login/rest'
 import styled from '@emotion/styled';

@@ -1,7 +1,7 @@
 import {FC} from 'react'
 import styled from '@emotion/styled'
 import Header from '@views/header'
-import Content from './content'
+import Content from '@layouts/Content'
 
 const Layout: FC= () => {
   return <>
