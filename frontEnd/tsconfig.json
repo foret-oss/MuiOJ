@@ -28,7 +28,8 @@
       "@views/*": ["./src/views/*"],
       "@src/*": ["./src/*"],
       "@*": ["./src/*"],
-      "@constants/*": ["./src/constants/*"]
+      "@constants/*": ["./src/constants/*"],
+      "@router/*":["./src/router/*"]
         }
   },
   "include": ["./src"]

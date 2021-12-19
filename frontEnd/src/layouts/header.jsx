@@ -43,7 +43,7 @@ class Header extends Component {
             <div>
                 <div className='header'>
                     <h1 className='title' style={{ fontSize: "36px" }}>
-                        <img style={{ borderRadius: "5px", width: "50px", height: "50px" }} src='http://oj.haizeix.com/pictures/UOJ_small.png' className='titlePicture'></img>
+                        <img style={{ borderRadius: "5px", width: "50px", height: "50px" }} src='../src/images/homeAvatar.png' className='titlePicture'></img>
                         &ensp;Online Judge
                     </h1>
                     <div className='userName'>

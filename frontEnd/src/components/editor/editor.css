@@ -1,0 +1,34 @@
+/* .wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    margin-top: 20rem;
+    margin-left: 10rem;
+} */
+.editor-container {
+    width: 80%;
+    height: 100%;
+    margin-left: 20%;
+    background-color: rgb(190, 147, 89);
+}
+.monacoEditor {
+    margin-left: 10rem;
+}
+.breakpoints {
+    background: red;
+    width: 10px !important;
+    height: 10px !important;
+    left: 0px !important;
+    top: 3px;
+    border-radius: 5px;
+}
+ 
+.breakpoints-fake {
+    background: red;
+    width: 10px !important;
+    height: 10px !important;
+    left: 0px !important;
+    top: 3px;
+    border-radius: 5px;
+}
