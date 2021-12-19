@@ -15,7 +15,28 @@ const EditorContainer = () => {
   return <div></div>
 }
 
-const ProblemItem = () => {
+const handleClick = () => {
+  const code = editorRef.current.getValue()
+  console.log("code", code)
+  const urlParams = new URL(window.location.href);
+  const tid = urlParams?.pathname.substring(6);
+  request('/question/item/' + tid, { 
+    method: "POST",
+    body: {
+      language:"cpp17",
+      code: code
+    },
+   }).then(res => {
+      if (res.code === 200) {
+        console.log("submit success!")
+        }
+    })
+}
+
+
+
+
+const ProblemItem = (props) => {
   const [data, setData] = useState(
     {
       content: '',
@@ -28,7 +49,6 @@ const ProblemItem = () => {
   const urlParams = new URL(window.location.href);
   const tid = urlParams?.pathname.substring(6);
   console.log("当前页面路由：", tid)
-
   //const tid = props.match.params.id
 
   useEffect(() => {
@@ -54,9 +74,9 @@ const ProblemItem = () => {
       &ensp;{data.content}
     </div>
     <div className={styles.content}>
-      <Editor></Editor>
+      <Editor ></Editor>
     </div>
-    <Button className={styles.Button}  variant="outlined" color="success">
+    <Button onClick={() => handleClick()}  className={styles.Button} variant="outlined" color="success">
       Submit
     </Button>
   </div>
