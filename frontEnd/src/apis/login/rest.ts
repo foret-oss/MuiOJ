@@ -15,7 +15,9 @@ let loginData = {
   code: 0,
   token:'',
   message: '',
-  username: ''
+  username: '',
+  isAdmin: false,
+  uid:0
 }
 
 const wrapLoginRequest = async (
@@ -38,8 +40,10 @@ const wrapLoginRequest = async (
     console.log("resposeData：",data)
     console.log("request body:", opts.body)
     loginData.code = data.code
-    loginData.username = data.message.username
+    loginData.username = data.message.username 
     loginData.token = data.message.token
+    loginData.uid = data.message.uid
+    loginData.isAdmin = data.message.is_admin
     return data
   } catch ({ response }) {
     console.log(response);
