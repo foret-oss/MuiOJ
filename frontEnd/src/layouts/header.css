@@ -8,6 +8,8 @@
     flex-direction: row;
     align-items: center;
     justify-content:flex-start ;
+    background-color: #fff;
+    overflow: hidden;
 }
 .title {
     margin-left: 150px;

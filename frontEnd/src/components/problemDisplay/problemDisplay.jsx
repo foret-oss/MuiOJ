@@ -46,7 +46,6 @@ export default class ProblemDisplay extends Component {
     })
   }
      
-
   render() {
     return (
       <div className='problemContainer'>
@@ -55,13 +54,13 @@ export default class ProblemDisplay extends Component {
             //maps循环
             this.state.problemList.map(item => {
               return (
-                <ListItem key={item.id}>
+                <ListItem key={item.tid}>
                   <ListItemAvatar>
                     <Avatar>
                       <BeachAccessIcon />
                     </Avatar>
                   </ListItemAvatar>
-                  <Link to={'/edit'} style={this.styles}>
+                  <Link to={'/edit/' + item.tid} style={this.styles}>
                     <ListItemText primary={item.title} secondary={"提交次数："+ item.accept} />
                   </Link>
                 </ListItem>

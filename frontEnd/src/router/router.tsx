@@ -6,7 +6,7 @@ import Login from '../components/login/login'
 import Header from '../layouts/header';
 import Register from '@components/register/register'
 import User from '@components/user/user'
-import Editor from '@components/editor/editor'
+import ProblemItem from '@components/problemItem/problemItem'
 
 class RouterConfig extends React.Component {
     render() {
@@ -17,7 +17,7 @@ class RouterConfig extends React.Component {
                     <Route path='/login' element={<Login />} />
                     <Route path='/register' element={<Register />} />
                     <Route path='/user' element={<User />} />
-                    <Route path='/edit' element={<Editor />} />
+                    <Route path='/edit/:tid' element={<ProblemItem />} />
                 </Routes>
             </BrowserRouter>
         )
