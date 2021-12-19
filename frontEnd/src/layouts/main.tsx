@@ -1,7 +1,7 @@
 import {FC} from 'react'
 import styled from '@emotion/styled'
 import Header from '@views/header'
-import Content from './content'
+// import Content from './content'
 
 const Layout: FC= () => {
   return <>
@@ -9,7 +9,7 @@ const Layout: FC= () => {
       <Header username={"test"}></Header>
     </HeaderLayout>
     <Container>
-      <Content/>
+      {/* <Content/> */}
     </Container>
   </>
 }

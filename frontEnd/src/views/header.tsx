@@ -1,6 +1,6 @@
 import React, { Component, FC, useEffect, useState } from 'react';
 import './header.css'
-import Content from "@src/layouts/Content"
+// import Content from "@layouts/content"
 import { Link } from 'react-router-dom'
 import { loginMessage } from '@apis/login/rest'
 import styled from '@emotion/styled';
@@ -41,7 +41,7 @@ const Header: FC<HeaderProps> = ({username}) => {
                 </HeaderBlock>
             </HeaderLayout>
             <ContentLayout>
-                <Content />
+                {/* <Content /> */}
             </ContentLayout>
         </div>
     )

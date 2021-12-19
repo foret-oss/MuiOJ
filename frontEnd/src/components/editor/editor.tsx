@@ -1,10 +1,11 @@
-import React, { Component, useRef } from 'react';
+import React, { Component, Ref, useRef } from 'react';
 //import logo from './logo.svg';
 //import './App.css';
 import { useEffect } from 'react'
 import Editor, { loader } from "@monaco-editor/react";
 import type { Monaco } from '@monaco-editor/react';
 import useTheme from './config'
+import {FC} from 'react'
 import styles from './editor.module.css'
 
 const defaultCode =
@@ -13,18 +14,21 @@ const defaultCode =
   code: 'code'
 }`;
 
-const MonacoEditor = (value:string) => {
-  const editorRef = useRef(null)
-  let code = ''
+interface EditorProps {
+  forwardRef: any
+}
+
+const MonacoEditor : FC<EditorProps> = ({forwardRef}) => {
   const handleEditorDidMount = (editor: any, monaco : Monaco) => {
-    editorRef.current = editor
     useTheme(monaco)
+    forwardRef.current = editor
     // code = value
     console.log("editor:", editor.getValue())
   }
 
   return (
-    <Editor height="50vh" 
+    <Editor 
+            height="50vh" 
             defaultLanguage="javascript" 
             defaultValue="" 
             onMount={handleEditorDidMount}>
