@@ -8,6 +8,7 @@ import (
 	"errors"
 	"fmt"
 	"io/ioutil"
+	"os"
 	"path/filepath"
 	"strconv"
 	"time"
@@ -20,6 +21,7 @@ type CollectedStdout struct {
 
 
 func Scheduler(request *judger.StarterType) (string, []*judger.JudgeCaseResult, error) {
+	InitJudger()
 	sid := request.Sid
 
 	fmt.Printf("========START JUDGE(%d)======== \n\n", sid)
@@ -38,9 +40,9 @@ func Scheduler(request *judger.StarterType) (string, []*judger.JudgeCaseResult, 
 
 	defer func() {
 		fmt.Printf("(%d) [Scheduler] Cleaning files \n", sid)
-		//if config.Global.AutoRemove.Files {
-		//	_ = os.RemoveAll(currentPath)
-		//}
+		if JudgerConfig.Global.AutoRemove.Files {
+			_ = os.RemoveAll(currentPath)
+		}
 	}()
 
 	outputPath, err := files.JudgeGenerateOutputDirWithMkdir(currentPath)

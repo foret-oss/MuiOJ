@@ -13,6 +13,7 @@ import (
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/api/types/container"
 	"io/ioutil"
+	"log"
 	"os"
 	"path"
 	"path/filepath"
@@ -98,11 +99,22 @@ func Runner(
 		return nil, err
 	}
 
-	if judger.Global.AutoRemove.Containers && !judger.Global.Extensions.HostBind {
-		defer func() {
-			go docker.ForceContainerRemove(resp.ID)
+	defer func() {
+		go func() {
+			if err := docker.Client.ContainerStop(docker.Context, resp.ID, nil); err != nil {
+				log.Printf("Unable to stop container %s: %s", resp.ID, err)
+			}
+
+			removeOptions := types.ContainerRemoveOptions{
+				RemoveVolumes: true,
+				Force:         true,
+			}
+
+			if err := docker.Client.ContainerRemove(docker.Context, resp.ID, removeOptions); err != nil {
+				log.Printf("Unable to remove container: %s", err)
+			}
 		}()
-	}
+	}()
 
 	if !compileInfo.NoBuild && !judger.Global.Extensions.HostBind {
 		fmt.Printf("(%d) [Runner] Copying build production to container \n", sid)

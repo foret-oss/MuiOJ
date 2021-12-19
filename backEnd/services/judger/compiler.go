@@ -9,6 +9,7 @@ import (
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/api/types/container"
 	"io/ioutil"
+	"log"
 	"os"
 	"path"
 	"time"
@@ -50,17 +51,28 @@ func Compiler(sid uint32, codePath string, code []byte, compileInfo *JudgerConfi
 		containerHostConfig,
 		nil,
 		nil,
-		"test")
+		"")
 
 	if err != nil {
 		return nil, err
 	}
 
-	if JudgerConfig.Global.AutoRemove.Containers && !JudgerConfig.Global.Extensions.HostBind {
-		defer func() {
-			go docker.ForceContainerRemove(resp.ID)
+	defer func() {
+		go func() {
+			if err := docker.Client.ContainerStop(docker.Context, resp.ID, nil); err != nil {
+				log.Printf("Unable to stop container %s: %s", resp.ID, err)
+			}
+
+			removeOptions := types.ContainerRemoveOptions{
+				RemoveVolumes: true,
+				Force:         true,
+			}
+
+			if err := docker.Client.ContainerRemove(docker.Context, resp.ID, removeOptions); err != nil {
+				log.Printf("Unable to remove container: %s", err)
+			}
 		}()
-	}
+	}()
 
 	fmt.Printf("(%d) [Compile] Copying files to container \n", sid)
 	io, err := utils.ConvertToTar(

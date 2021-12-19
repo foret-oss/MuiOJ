@@ -3,6 +3,7 @@ package main
 import (
 	"MuiOJ-backEnd/controllers/middlewares"
 	"MuiOJ-backEnd/controllers/question"
+	"MuiOJ-backEnd/controllers/submission"
 	"MuiOJ-backEnd/controllers/user"
 	"MuiOJ-backEnd/services/config"
 	"MuiOJ-backEnd/services/db"
@@ -27,6 +28,7 @@ func main() {
 	config.Secret = "1idajsihgaopkopckafpo123"
 	user.Router(server)
 	question.Router(server)
+	submission.Router(server)
 	if err := server.Run(fmt.Sprintf("%s:%s", config.Address, config.Port)); err != nil {
 		fmt.Println(err)
 	}

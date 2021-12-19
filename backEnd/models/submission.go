@@ -1,6 +1,8 @@
 package models
 
-import "time"
+import (
+	"time"
+)
 
 type Submission struct {
 	Sid       uint32        `xorm:"autoincr" json:"sid"`

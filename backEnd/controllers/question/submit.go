@@ -15,7 +15,6 @@ func Submit(c *gin.Context){
 			"code":    403,
 			"message": err.Error(),
 		})
-
 		return
 	}
 
@@ -38,7 +37,6 @@ func Submit(c *gin.Context){
 
 		return
 	}
-
 	sid, err := common.CodeSubmit(uint32(tid), submitForm, authObject, false)
 	if err != nil {
 		c.JSON(400, gin.H{

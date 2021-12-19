@@ -10,8 +10,8 @@ import (
 )
 
 const (
-	CodeDir = "./file/code"
-	SubmissionDir = "./file/submission"
+	CodeDir = "./files/Code/"
+	SubmissionDir = "./files/submission"
 )
 
 func CodeGenerateFileNameWithMkdir(uid uint32) (string, error) {
@@ -28,7 +28,7 @@ func CodeGenerateFileNameWithMkdir(uid uint32) (string, error) {
 }
 
 func CodePath(uuid string) (string, error) {
-	return filepath.Abs(fmt.Sprintf("./files/submission/%s.code", uuid))
+	return filepath.Abs(fmt.Sprintf("%s/%s.code", CodeDir, uuid))
 }
 
 func SubmissionGenerateDirWithMkdir(sid uint32) (string, error) {

@@ -12,4 +12,5 @@ func Router(baseRouter *gin.Engine){
 	questionRouter.PUT("/item/:tid", middlewares.AuthJWT(), Edit)
 	questionRouter.DELETE("/item/:tid", middlewares.AuthJWT(), Delete)
 	questionRouter.GET("/list/:page", middlewares.AuthJWT(), List)
+	questionRouter.POST("/item/:tid", middlewares.AuthJWT(), Submit)
 }
