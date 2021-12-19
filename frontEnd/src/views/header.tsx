@@ -6,17 +6,15 @@ import { loginMessage } from '@apis/login/rest'
 import styled from '@emotion/styled';
 import {Global, css} from '@emotion/react'
 
-interface HeaderProps {
-    username: string,
-}
-
-const Header: FC<HeaderProps> = ({username}) => {
+const Header: FC<{}> = () => {
     const [isLogin, setIsLogin] = useState(false)
+    const [username, setUsername] = useState("")
     useEffect(() => {
-        let data = window.sessionStorage.getItem('loginData')
+        let data : any = window.sessionStorage.getItem('loginData')
         if (data !== null) {
             data = JSON.parse(data)
             console.log("LoginName:",typeof (data))
+            setUsername(data.username)
             setIsLogin(true)
         }
     }, [])
