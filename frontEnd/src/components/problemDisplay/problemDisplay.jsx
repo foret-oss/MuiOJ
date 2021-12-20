@@ -22,29 +22,29 @@ export default class ProblemDisplay extends Component {
     super(props);
     this.state = {
       page: 1,
-      problemList : [],
-      problemUrl : "/question/list/"
+      problemList: [],
+      problemUrl: "/question/list/",
     }
   }
 
-  styles = {textDecoration: "none", color: "#71838f" }
+  styles = { textDecoration: "none", color: "#71838f" }
 
   handleChange = (event, value) => {
-    const res = GetProblem(this.state.problemUrl+ this.state.page, {})
+    const res = GetProblem(this.state.problemUrl + this.state.page, {})
     res.then(res => {
-      this.setState({ problemList: res.message, page: value})
+      this.setState({ problemList: res.message, page: value })
       console.log("this.problemList", this.state.problemList)
     })
   };
 
   componentDidMount() {
-    const res = GetProblem(this. state.problemUrl + this.state.page,{})
+    const res = GetProblem(this.state.problemUrl + this.state.page, {})
     res.then(res => {
-      this.setState({ problemList: res.message})
+      this.setState({ problemList: res.message })
       console.log("this.problemList", this.state.problemList)
     })
   }
-  
+
   render() {
     return (
       <div className='problemContainer'>
@@ -60,7 +60,7 @@ export default class ProblemDisplay extends Component {
                     </Avatar>
                   </ListItemAvatar>
                   <Link to={'/edit/' + item.tid} style={this.styles}>
-                    <ListItemText primary={item.title} secondary={"提交次数："+ item.attempt} />
+                    <ListItemText primary={item.title} secondary={"提交次数：" + item.attempt} />
                   </Link>
                 </ListItem>
               )
@@ -75,7 +75,6 @@ export default class ProblemDisplay extends Component {
     );
 
   }
-
 
 }
 
