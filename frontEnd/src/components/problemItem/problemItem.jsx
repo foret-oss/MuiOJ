@@ -4,21 +4,19 @@ import styles from './problemItem.module.css'
 import Editor from '@components/editor/editor'
 import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import {useNavigate} from 'react-router-dom'
+import { ColorLens } from '@mui/icons-material';
 
-const Title = () => {
-  return (
-    <div>
-    </div>
-  );
-};
-
-const EditorContainer = () => {
-  return <div></div>
-}
 
 const ProblemItem = (props) => {
-  const [open,setOpen] = useState (false)
-  const [snackbarMessage,setSnackbarMessage] = useState('')
+  const [open, setOpen] = useState(false)
+  const [snackbarMessage, setSnackbarMessage] = useState('')
+  const navigate = useNavigate();
   const [data, setData] = useState(
     {
       content: '',
@@ -32,7 +30,6 @@ const ProblemItem = (props) => {
   const tid = urlParams?.pathname.substring(6);
   console.log("当前页面路由：", tid)
   //const tid = props.match.params.id
-
   useEffect(() => {
     request('/question/item/' + tid, {}).then(res => {
       if (res.code === 200) {
@@ -71,6 +68,10 @@ const ProblemItem = (props) => {
         setOpen(true);
         setSnackbarMessage("提交成功！")
         console.log("submit success!")
+        setTimeout(() => {
+          navigate("/")
+        }, 1000)
+        
       }
       else {
         console.log("submit error!")
@@ -82,17 +83,28 @@ const ProblemItem = (props) => {
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
-        return;
+      return;
     }
     setOpen(false);
-};
-
-
-
-
+  }
   console.log("ProblemItemData", data)
 
+  // const goBack = () => {
+  //   console.log("goback");
+  //   goback();
+  // }
+
   return (<div className={styles.container}>
+    <AppBar position="static" color="transparent">
+      <Toolbar variant="dense">
+        <IconButton onClick={()=>{navigate('/')}}edge="start" color="default" aria-label="menu" sx={{ mr: 2 }}>
+          <MenuIcon />
+        </IconButton>
+        <Typography  variant="h6" color="default" component="div">
+          Back
+        </Typography>
+      </Toolbar>
+    </AppBar>
     <Snackbar
       open={open}
       autoHideDuration={1500}
@@ -105,7 +117,7 @@ const ProblemItem = (props) => {
     <div className={styles.content}>
       <Editor forwardRef={editorRef}></Editor>
     </div>
-    <Button onClick={() => handleClick()} className={styles.Button} variant="outlined" color="success">
+    <Button onClick={handleClick} className={styles.Button} variant="outlined" color="success">
       Submit
     </Button>
   </div>

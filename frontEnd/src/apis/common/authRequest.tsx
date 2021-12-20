@@ -2,8 +2,7 @@ import registerType from "@src/constants/register/registerType";
 import conf from "@config/conf";
 import React from 'react'
 import Snackbar from '@mui/material/Snackbar';
-import {useNavigate} from 'react-router-dom'
-
+import { useNavigate } from "react-router";
 
 const RequestWithAuth = async (
   url: string,
@@ -15,9 +14,10 @@ const RequestWithAuth = async (
   opts.headers= Object.assign (opts.headers ? opts.headers : {}, {
     "Authorization": window.sessionStorage.getItem("token") || ''
   })
-  if (opts.headers.Authorization == ''){
-    const navigate = useNavigate()
-    navigate('/login')
+  if (window.sessionStorage.getItem("token") == undefined) {
+    console.log("未登录需重新登录")
+    const navigate = useNavigate();
+    navigate('/login');
   }
   try {
     const data = await fetch(`${conf.baseUrl}${url}`, opts).then((result) =>

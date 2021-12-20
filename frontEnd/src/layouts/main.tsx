@@ -1,12 +1,12 @@
 import {FC} from 'react'
 import styled from '@emotion/styled'
 import Header from '@views/header'
-import Content from '@layouts/Content'
+import Content from '@layouts/content'
 
 const Layout: FC= () => {
   return <>
     <HeaderLayout>
-      <Header username={"test"}></Header>
+      <Header></Header>
     </HeaderLayout>
     <HeaderPlaceHolder />
     <Container>
