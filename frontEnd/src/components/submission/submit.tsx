@@ -1,55 +1,57 @@
 import React, { Component } from 'react'
-
-import Paper from '@mui/material/Paper';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TablePagination from '@mui/material/TablePagination';
-import TableRow from '@mui/material/TableRow';
-
+import request from '@apis/common/authRequest'
+import { FC, useEffect, useState } from 'react'
+import Paper from '@mui/material/Paper'
+import Table from '@mui/material/Table'
+import TableBody from '@mui/material/TableBody'
+import TableCell from '@mui/material/TableCell'
+import TableContainer from '@mui/material/TableContainer'
+import TableHead from '@mui/material/TableHead'
+import TablePagination from '@mui/material/TablePagination'
+import TableRow from '@mui/material/TableRow'
+import Submitinfo from '@apis/common/authRequest'
 interface Column {
-  id: 'name' | 'status' | 'time' | 'memory' |'language'| 'date';
-  label: string;
-  minWidth?: number;
-  align?: 'right';
-  format?: (value: number) => string;
+  id: 'name' | 'status' | 'mark' | 'time' | 'memory' | 'language' | 'date'
+  label: string
+  minWidth?: number
+  align?: 'center'
+  format?: (value: number) => string
 }
 
 const columns: Column[] = [
-  { id: 'name', label: 'ID', minWidth: 100 },
-  { id: 'status', label: 'Status', minWidth: 100 },
+  { id: 'name', label: 'ID', minWidth: 100, align: 'center' },
+  { id: 'status', label: 'Status', minWidth: 100, align: 'center' },
   {
     id: 'time',
     label: 'UsingTime\u00a0(ms)',
-    minWidth: 130,
+    minWidth: 100,
+    align: 'center',
     format: (value: number) => value.toLocaleString('en-US'),
   },
   {
     id: 'memory',
     label: 'Memory\u00a0(kb)',
     minWidth: 130,
-    align: 'right',
+    align: 'center',
     format: (value: number) => value.toLocaleString('en-US'),
   },
-  { id: 'language', label: 'Language', minWidth: 130 ,align: 'right',},
+  { id: 'language', label: 'Language', minWidth: 130, align: 'center' },
   {
     id: 'date',
     label: 'Submit date',
     minWidth: 130,
-    align: 'right',
+    align: 'center',
     format: (value: number) => value.toFixed(2),
   },
-];
+]
 
 interface Data {
-  name: string;
-  status: string;
-  time: number;
-  memory: number;
-  language:string;
-  date: string;
+  name: string
+  status: string
+  time: number
+  memory: number
+  language: string
+  date: Date
 }
 
 function createData(
@@ -57,54 +59,69 @@ function createData(
   status: string,
   time: number,
   memory: number,
-  language:string,
+  language: string,
+  date: Date
 ): Data {
-  const date = new Date().toDateString();
-  return { name, status, time, memory, language, date };
+  return { name, status, time, memory, language, date }
 }
 
-const rows = [
-  createData('1.A+BProblem', 'pass', 1324171354, 3287263,'C++11'),
-  createData('3.Copycat', 'pass', 1403500365, 9596961,'C++11'),
-  createData('6.GuessNumber', 'pass', 60483973, 301340,'C++11'),
-  createData('102.最小费用流', 'pass', 327167434, 9833520,'C++11'),
-  createData('107.维护全序集', 'fail', 37602103, 9984670,'C++11'),
-  createData('113.最大异或和', 'pass', 25475400, 7692024,'C++11'),
-  createData('116.有源汇有上下界最大流', 'fail', 83019200, 357578,'C++11'),
-  createData('118.正则表达式', 'pass', 4857000, 70273,'C++11'),
-  createData('119.单源最短路', 'fail', 126577691, 1972550,'C++11'),
-  createData('124.除数函数求和', 'fail', 126317000, 377973,'C++11'),
-  createData('125.除数函数幂和', 'pass', 67022000, 640679,'C++11'),
-  createData('500.「LibreOJβRound」ZQC的拼图', 'pass', 67545757, 242495,'C++11'),
-  createData('505.「LibreOJβRound」ZQC的游戏', 'pass', 146793744, 17098246,'C++11'),
-  createData('506.「LibreOJβRound」ZQC的作业', 'pass', 200962417, 923768,'C++11'),
-  createData('509.「LibreOJNOIRound#1」动态几何问题', 'fail', 210147125, 8515767,'C++11'),
-];
-
 export default function ColumnGroupingTable() {
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [page, setPage] = React.useState(0)
+  const [rowsPerPage, setRowsPerPage] = React.useState(10)
+  const [pageData, setPageData] = React.useState<any>({})
+  useEffect(() =>{
+    let data: any = window.sessionStorage.getItem('loginData')
+    if (data) {
+      data = JSON.parse(data)
+      const uid = data?.uid
+      if (uid) {
+        request('/submission/' + uid).then((data: any) => {
+          console.log(data)
+          console.log(data.message)
+          setPageData(data?.message || [])
+        })
+      }
+    }
+  }, [])
 
+  console.log(pageData)
+  let rows: any
+  if (pageData.map) {
+    rows = pageData.map((item: any) =>
+      createData(
+        item.question_title,
+        item.status,
+        item.time_used,
+        item.space_used,
+        item.language,
+        item.created_at
+      )
+    )
+  } else {
+    rows = []
+  }
   const handleChangePage = (event: unknown, newPage: number) => {
-    setPage(newPage);
-  };
+    setPage(newPage)
+  }
 
-  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
-  };
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setRowsPerPage(+event.target.value)
+    setPage(0)
+  }
 
   return (
-    <Paper sx={{ width: '84%', marginTop: '50px',marginLeft: '-1rem' ,}}>
-      <TableContainer sx={{ maxHeight: 440,maxWidth:'100%' }}>
+    <Paper sx={{ maxWidth: '80%' }}>
+      <TableContainer>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
               <TableCell align="center" colSpan={3}>
-              Result
+                Result
               </TableCell>
               <TableCell align="center" colSpan={3}>
-              Details
+                Details
               </TableCell>
             </TableRow>
             <TableRow>
@@ -122,21 +139,26 @@ export default function ColumnGroupingTable() {
           <TableBody>
             {rows
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
+              .map((row: any) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.status}>
+                  <TableRow
+                    hover
+                    role="checkbox"
+                    tabIndex={-1}
+                    key={row.status}
+                  >
                     {columns.map((column) => {
-                      const value = row[column.id];
+                      const value = row[column.id]
                       return (
                         <TableCell key={column.id} align={column.align}>
                           {column.format && typeof value === 'number'
                             ? column.format(value)
                             : value}
                         </TableCell>
-                      );
+                      )
                     })}
                   </TableRow>
-                );
+                )
               })}
           </TableBody>
         </Table>
@@ -151,6 +173,5 @@ export default function ColumnGroupingTable() {
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
     </Paper>
-  );
+  )
 }
-

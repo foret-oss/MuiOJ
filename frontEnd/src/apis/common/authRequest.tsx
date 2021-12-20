@@ -2,6 +2,7 @@ import registerType from "@src/constants/register/registerType";
 import conf from "@config/conf";
 import React from 'react'
 import Snackbar from '@mui/material/Snackbar';
+import {useNavigate} from 'react-router-dom'
 
 
 const RequestWithAuth = async (
@@ -11,9 +12,13 @@ const RequestWithAuth = async (
 ): Promise<string> => {
   //initialize fetch options
   opts.mode = "cors"
-  opts.headers = Object.assign (opts.headers ? opts.headers : {}, {
+  opts.headers= Object.assign (opts.headers ? opts.headers : {}, {
     "Authorization": window.sessionStorage.getItem("token") || ''
   })
+  if (opts.headers.Authorization == ''){
+    const navigate = useNavigate()
+    navigate('/login')
+  }
   try {
     const data = await fetch(`${conf.baseUrl}${url}`, opts).then((result) =>
       result.json()
