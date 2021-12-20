@@ -30,7 +30,7 @@ export default class ProblemDisplay extends Component {
   styles = { textDecoration: "none", color: "#71838f" }
 
   handleChange = (event, value) => {
-    const res = GetProblem(this.state.problemUrl + this.state.page, {})
+    const res = GetProblem(this.state.problemUrl + value, {})
     res.then(res => {
       this.setState({ problemList: res.message, page: value })
       console.log("this.problemList", this.state.problemList)

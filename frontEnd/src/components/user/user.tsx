@@ -44,7 +44,7 @@ const rows = [
     createData('用户名', user?.username),
     createData('用户ID', user?.uid?.toString()),
     createData('用户邮箱', '3313696160@qq.com'),
-    createData('是否管理员', user?.isAdmin?.toString() || "否")
+    createData('是否管理员', user?.is_admin?.toString() === 'true' && '是' || "否")
 ];
 
 

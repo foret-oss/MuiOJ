@@ -10,6 +10,7 @@ import TableHead from '@mui/material/TableHead'
 import TablePagination from '@mui/material/TablePagination'
 import TableRow from '@mui/material/TableRow'
 import Submitinfo from '@apis/common/authRequest'
+import styled from '@emotion/styled'
 interface Column {
   id: 'name' | 'status' | 'mark' | 'time' | 'memory' | 'language' | 'date'
   label: string
@@ -112,6 +113,7 @@ export default function ColumnGroupingTable() {
   }
 
   return (
+  <Layout>
     <Paper sx={{ maxWidth: '80%' }}>
       <TableContainer>
         <Table stickyHeader aria-label="sticky table">
@@ -139,13 +141,13 @@ export default function ColumnGroupingTable() {
           <TableBody>
             {rows
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row: any) => {
+              .map((row: any, index: number) => {
                 return (
                   <TableRow
                     hover
                     role="checkbox"
                     tabIndex={-1}
-                    key={row.status}
+                    key={pageData[index].sid}
                   >
                     {columns.map((column) => {
                       const value = row[column.id]
@@ -173,5 +175,13 @@ export default function ColumnGroupingTable() {
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
     </Paper>
+    </Layout>
   )
 }
+
+const Layout = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`

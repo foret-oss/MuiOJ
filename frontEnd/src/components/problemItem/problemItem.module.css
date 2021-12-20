@@ -8,9 +8,8 @@
 }
 .title {
     display: flex;
-    position: absolute;
+    position: relative;
     width: 100%;
-    top: 12%;
     right: 0;
     border-radius: 5px;
     font-size: 1.3rem;
@@ -19,13 +18,10 @@
 }
 .content {
     display: flex;
-    position: absolute;
+    position: relative;
     width: 100%;
     min-height: 55%;
-    margin-top: 18%;
     align-items: center;
 }
 .Button {
-    position: absolute;
-    top: 87%;
 }
