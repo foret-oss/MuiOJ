@@ -23,6 +23,7 @@ const RequestWithAuth = async (
     const data = await fetch(`${conf.baseUrl}${url}`, opts).then((result) =>
       result.json()
     )
+    console.log("request body:", opts)
     console.log("success response:",data)
     return data
   } catch ({ response }) {

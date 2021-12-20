@@ -38,7 +38,7 @@ interface userForm {
     [key: string]: string
   }
 
-const user : userForm = JSON.parse(window.sessionStorage.getItem('loginData') || '{}');
+const user : userForm = window.sessionStorage.getItem('loginData') == null ? "" : JSON.parse(window.sessionStorage.getItem('loginData') || '');
 
 const rows = [
     createData('用户名', user?.username),

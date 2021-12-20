@@ -30,10 +30,9 @@ export default class ProblemDisplay extends Component {
   styles = {textDecoration: "none", color: "#71838f" }
 
   handleChange = (event, value) => {
-    this.setState({ page: value })
     const res = GetProblem(this.state.problemUrl+ this.state.page, {})
     res.then(res => {
-      this.setState({ problemList: res.message})
+      this.setState({ problemList: res.message, page: value})
       console.log("this.problemList", this.state.problemList)
     })
   };
@@ -45,7 +44,7 @@ export default class ProblemDisplay extends Component {
       console.log("this.problemList", this.state.problemList)
     })
   }
-     
+  
   render() {
     return (
       <div className='problemContainer'>
@@ -61,7 +60,7 @@ export default class ProblemDisplay extends Component {
                     </Avatar>
                   </ListItemAvatar>
                   <Link to={'/edit/' + item.tid} style={this.styles}>
-                    <ListItemText primary={item.title} secondary={"提交次数："+ item.accept} />
+                    <ListItemText primary={item.title} secondary={"提交次数："+ item.attempt} />
                   </Link>
                 </ListItem>
               )
