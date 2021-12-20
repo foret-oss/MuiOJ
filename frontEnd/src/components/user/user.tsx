@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from "react";
+import React, { FunctionComponent, useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import './user.css'
 import Box from '@mui/material/Box';
@@ -17,6 +17,8 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
+import request from '@apis/common/authRequest'
+
 
 const bull = (
     <Box
@@ -39,6 +41,7 @@ interface userForm {
   }
 
 const user : userForm = window.sessionStorage.getItem('token') == undefined ? "" : JSON.parse(window.sessionStorage.getItem('loginData') || '');
+let  submitNum = 0
 
 const rows = [
     createData('用户名', user?.username),
@@ -48,8 +51,27 @@ const rows = [
 ];
 
 
-
 const Main: FunctionComponent<unknown> = () => {
+    const [noUse, setNoUse] = useState(false)
+    useEffect(() =>{
+    let data: any = window.sessionStorage.getItem('loginData')
+    if (data) {
+      data = JSON.parse(data)
+      const uid = data?.uid
+      if (uid) {
+        request('/user/my').then((data: any) => {
+          console.log("userData:",data)
+          console.log(data.message.attempt)
+          rows[4] = createData('提交次数', data.message.attempt.toString())
+          rows[5] = createData('通过次数', data.message.accept.toString())
+          setNoUse(!noUse)
+        })
+      }
+    }
+  }, [])
+
+
+
     return (
         <div>
             <TableContainer component={Paper}>
@@ -132,6 +154,7 @@ const Side: FunctionComponent<unknown> = () => {
 };
 
 const User: FunctionComponent<unknown> = () => {
+
     const problemList = []
     return (
         <div className="container">
