@@ -11,7 +11,7 @@ const RequestWithAuth = async (
 ): Promise<string> => {
   //initialize fetch options
   opts.mode = "cors"
-  opts.headers = Object.assign (opts.headers ? opts.headers : {}, {
+  opts.headers= Object.assign (opts.headers ? opts.headers : {}, {
     "Authorization": window.sessionStorage.getItem("token") || ''
   })
   if (window.sessionStorage.getItem("token") == undefined) {
