@@ -2,8 +2,12 @@ import {FC} from 'react'
 import styled from '@emotion/styled'
 import Header from '@views/header'
 import Content from '@layouts/content'
+import {useNavigate} from 'react-router-dom'
+
+let navigate : any
 
 const Layout: FC= () => {
+  navigate = useNavigate()
   return <>
     <HeaderLayout>
       <Header></Header>
@@ -14,6 +18,8 @@ const Layout: FC= () => {
     </Container>
   </>
 }
+
+export {navigate}
 
 const HeaderPlaceHolder = styled.div`
   height: 10vh;

@@ -10,6 +10,7 @@ import RegisterMethod from "@apis/register/register"
 import { registerMessage } from "@apis/register/register"
 import Snackbar from '@mui/material/Snackbar';
 import { createBrowserHistory } from "history";
+import {useNavigate} from 'react-router-dom'
 //import CloseIcon from '@mui/icons-material/Close';
 
 const isWidthLimited = document.body.offsetWidth > 400;
@@ -51,7 +52,7 @@ const RegisterForm: FunctionComponent<unknown> = () => {
     const classes = useStyles(isWidthLimited);
     const registerFieldText = registerText[registerType]
     let history = createBrowserHistory();
-
+    const navigate = useNavigate()
     const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
         if (reason === 'clickaway') {
             return;
@@ -69,6 +70,7 @@ const RegisterForm: FunctionComponent<unknown> = () => {
                     id={item}
                     label={item}
                     variant={"outlined"}
+                    type={item === 'password' ? "password" : ""}
                 ></RegisterInputArea>
                 <Snackbar
                     open={open}
@@ -90,18 +92,17 @@ const RegisterForm: FunctionComponent<unknown> = () => {
         }
         //console.log("registerMessage",registerMessage);
         //console.log("registerMethod[registerType](opts):",opts)
-        RegisterMethod[registerType](opts);
-        if (registerMessage.code === 200) {
-            setSnackbarMessage("Register Success!")
-            setOpen(true)
-            history.push("/login");
-        }
-        else  {
-            setSnackbarMessage("Register Error!")
-            setOpen(true)
-            console.log("snackbarMessage:",snackbarMessage);
-            console.log("open", open)
-        }
+        RegisterMethod[registerType](opts).then((res: any) => {
+            if (res.code === 200) {
+                setSnackbarMessage("Register Success!")
+                setOpen(true)
+                navigate("/login");
+            }else{
+                setSnackbarMessage("Register Success!")
+                setOpen(true)
+                navigate("/login");
+            }
+        })
 
     };
 
