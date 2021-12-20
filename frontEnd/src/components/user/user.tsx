@@ -76,17 +76,19 @@ const Main: FunctionComponent<unknown> = () => {
 };
 
 const styles = { textDecoration: "none", color: "#71838f" }
-const navigate = useNavigate()
-const goback = () => {
-    navigate('/')
-}
+
+// const navigate = useNavigate()
+
+// const goback = () => {
+//     navigate('/')
+// }
 
 const Side: FunctionComponent<unknown> = () => {
     return (
         <>
             <Card sx={{ minWidth: 275, marginBottom: "1rem" }}>
                 <CardActions>
-                    <Button size="large" onClick={() => goback()}  >
+                    <Button size="large" >
                         首页
                     </Button>
                 </CardActions>
