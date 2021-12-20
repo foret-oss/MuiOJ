@@ -29,7 +29,7 @@ const MonacoEditor : FC<EditorProps> = ({forwardRef}) => {
   return (
     <Editor 
             height="50vh" 
-            defaultLanguage="cpp17" 
+            defaultLanguage="java" 
             defaultValue="" 
             onMount={handleEditorDidMount}>
     </Editor>

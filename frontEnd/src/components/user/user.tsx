@@ -7,7 +7,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { Link } from 'react-router-dom'
+import { Link , useNavigate, Navigate} from 'react-router-dom'
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -38,7 +38,7 @@ interface userForm {
     [key: string]: string
   }
 
-const user : userForm = window.sessionStorage.getItem('loginData') == null ? "" : JSON.parse(window.sessionStorage.getItem('loginData') || '');
+const user : userForm = window.sessionStorage.getItem('token') == undefined ? "" : JSON.parse(window.sessionStorage.getItem('loginData') || '');
 
 const rows = [
     createData('用户名', user?.username),
@@ -76,14 +76,18 @@ const Main: FunctionComponent<unknown> = () => {
 };
 
 const styles = { textDecoration: "none", color: "#71838f" }
+const navigate = useNavigate()
+const goback = () => {
+    navigate('/')
+}
 
 const Side: FunctionComponent<unknown> = () => {
     return (
         <>
             <Card sx={{ minWidth: 275, marginBottom: "1rem" }}>
                 <CardActions>
-                    <Button size="large">
-                        <Link to='./' style={styles}>首页</Link>
+                    <Button size="large" onClick={() => goback()}  >
+                        首页
                     </Button>
                 </CardActions>
             </Card>
@@ -129,8 +133,7 @@ const Side: FunctionComponent<unknown> = () => {
 };
 
 const User: FunctionComponent<unknown> = () => {
-    const problemList = [
-    ]
+    const problemList = []
     return (
         <div className="container">
             <div className="side">
