@@ -6,7 +6,7 @@ import Content from '@layouts/Content'
 const Layout: FC= () => {
   return <>
     <HeaderLayout>
-      <Header username={"test"}></Header>
+      <Header></Header>
     </HeaderLayout>
     <HeaderPlaceHolder />
     <Container>
