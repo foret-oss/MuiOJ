@@ -30,7 +30,6 @@ const ProblemItem = (props) => {
   const tid = urlParams?.pathname.substring(6);
   console.log("当前页面路由：", tid)
   //const tid = props.match.params.id
-
   useEffect(() => {
     request('/question/item/' + tid, {}).then(res => {
       if (res.code === 200) {
@@ -98,7 +97,7 @@ const ProblemItem = (props) => {
   return (<div className={styles.container}>
     <AppBar position="static" color="transparent">
       <Toolbar variant="dense">
-        <IconButton edge="start" color="default" aria-label="menu" sx={{ mr: 2 }}>
+        <IconButton onClick={()=>{navigate('/')}}edge="start" color="default" aria-label="menu" sx={{ mr: 2 }}>
           <MenuIcon />
         </IconButton>
         <Typography  variant="h6" color="default" component="div">
@@ -118,7 +117,7 @@ const ProblemItem = (props) => {
     <div className={styles.content}>
       <Editor forwardRef={editorRef}></Editor>
     </div>
-    <Button onClick={() => handleClick()} className={styles.Button} variant="outlined" color="success">
+    <Button onClick={handleClick} className={styles.Button} variant="outlined" color="success">
       Submit
     </Button>
   </div>
