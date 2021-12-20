@@ -16,7 +16,7 @@ Content-Type: application/json
   "password": "wadwings"
 }
 ###
-POST http://localhost:8888/user/login?type=username
+POST http://tx.dedsec.site:8888/user/login?type=username
 Content-Type: application/json
 
 {
@@ -44,7 +44,7 @@ Content-Type: application/json
 ###
 POST http://tx.dedsec.site:8888/question/item
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsInVzZXJuYW1lIjoid2Fkd2luZ3MiLCJpc19hZG1pbiI6dHJ1ZSwiZXhwIjoxNjM5OTI2NjY4fQ.AkIMgrLtT14qpUvhD2cwFFh2IB6Q9lOHNvz9oG3g8oVfSQI5IwKC5YNbkCXnlkuGTZcUc3IQrm9higN4uhTz4g
+Authorization: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsInVzZXJuYW1lIjoid2Fkd2luZ3MiLCJpc19hZG1pbiI6dHJ1ZSwiZXhwIjoxNjQwMDE4OTMxfQ.yzMw03dmv5XZiEcgZ8LA9eVdIIIqWvwvl0_fiIyqlBzeHqSQaLLKtF82ZtvMjoQFK_1sCvUWdiE1M7NypNcMsg
 
 {
   "title": "1.A+BProblem",
@@ -73,4 +73,38 @@ Authorization: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsInVzZXJuYW1lIjoi
 
 ###
 GET http://tx.dedsec.site:8888/question/item/1
-Authorization: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsInVzZXJuYW1lIjoid2Fkd2luZ3MiLCJpc19hZG1pbiI6dHJ1ZSwiZXhwIjoxNjM5OTIyMjA4fQ.0OFX6q_Gq4rcMcqmdK6hLwCedwzHua9smqiPyK70hfMlDWjwyKt4oPFq7OjQCX1Zo5wQXrRxKcWsxhv-XYaqhw
+Authorization: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsInVzZXJuYW1lIjoid2Fkd2luZ3MiLCJpc19hZG1pbiI6dHJ1ZSwiZXhwIjoxNjQwMDE2Mjg3fQ.GjN3NaZaxDlneoRsHKl9A4DOJoOUXa8lSAXbwRjg3jQDtKFPHxFwP4a7Lx7BeDMin6klFjsjapgAffsw8S3xqQ
+
+###
+POST http://tx.dedsec.site:8888/question/item/1
+Authorization: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsInVzZXJuYW1lIjoid2Fkd2luZ3MiLCJpc19hZG1pbiI6dHJ1ZSwiZXhwIjoxNjQwMDE2Mjg3fQ.GjN3NaZaxDlneoRsHKl9A4DOJoOUXa8lSAXbwRjg3jQDtKFPHxFwP4a7Lx7BeDMin6klFjsjapgAffsw8S3xqQ
+Content-Type: application/json
+
+{
+  "language": "cpp17",
+  "code": "#include <iostream> \nint main() { \nint x, y; \nstd::cin >> x >> y; \nstd::cout << (x + y) << std::endl; \nreturn 0; \n}"
+}
+###
+POST http://localhost:8888/question/item/2
+Authorization: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsInVzZXJuYW1lIjoid2Fkd2luZ3MiLCJpc19hZG1pbiI6dHJ1ZSwiZXhwIjoxNjQwMDE2Mjg3fQ.GjN3NaZaxDlneoRsHKl9A4DOJoOUXa8lSAXbwRjg3jQDtKFPHxFwP4a7Lx7BeDMin6klFjsjapgAffsw8S3xqQ
+Content-Type: application/json
+
+{
+  "language": "cpp17",
+  "code": "#include <iostream> \nint main() { \nint x, y; \nstd::cin >> x >> y; \nstd::cout << (x - y) << std::endl; \nreturn 0; \n}"
+}
+###
+POST http://localhost:8888/question/item/2
+Authorization: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsInVzZXJuYW1lIjoid2Fkd2luZ3MiLCJpc19hZG1pbiI6dHJ1ZSwiZXhwIjoxNjQwMDE2Mjg3fQ.GjN3NaZaxDlneoRsHKl9A4DOJoOUXa8lSAXbwRjg3jQDtKFPHxFwP4a7Lx7BeDMin6klFjsjapgAffsw8S3xqQ
+Content-Type: application/json
+
+{
+  "language": "cpp17",
+  "code": "#include <iostream> \nint mian() { \nint x, y; \nstd::cin >> x >> y; \nstd::cout << (x + y) << std::endl; \nreturn 0; \n}"
+}
+###
+GET http://localhost:8888/submission/1
+Authorization: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsInVzZXJuYW1lIjoid2Fkd2luZ3MiLCJpc19hZG1pbiI6dHJ1ZSwiZXhwIjoxNjQwMDE2Mjg3fQ.GjN3NaZaxDlneoRsHKl9A4DOJoOUXa8lSAXbwRjg3jQDtKFPHxFwP4a7Lx7BeDMin6klFjsjapgAffsw8S3xqQ
+###
+GET http://localhost:8888/submission/detail/3
+Authorization: eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEsInVzZXJuYW1lIjoid2Fkd2luZ3MiLCJpc19hZG1pbiI6dHJ1ZSwiZXhwIjoxNjQwMDE2Mjg3fQ.GjN3NaZaxDlneoRsHKl9A4DOJoOUXa8lSAXbwRjg3jQDtKFPHxFwP4a7Lx7BeDMin6klFjsjapgAffsw8S3xqQ
