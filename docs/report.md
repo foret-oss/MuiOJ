@@ -239,39 +239,51 @@ undo
 2. 登录数据结构的使用结果分析
 -  用户登录测试一：
    在登录界面，用户点击用户名登录，输入已注册的用户名和密码。登录成功后，弹框显示登录成功 样式，前端获取token并进行存储，并跳转到主页。查看数据库，可以发现数据库中能够正常存储用户的信息。如下图：
-
+   <img src="https://gitee.com/fspz/pic-go-relate/raw/master/img/login.png" alt="image-20211227231435418" style="zoom:80%;" />
 
 - 用户登录测试二：
   在登录界面，用户点击用邮箱登录，输入已注册的邮箱账号和密码。登录成功后，弹框显示登录成功样式，前端获取token并进行存储，并跳转到主页。查看数据库，可以发现数据库中能够正常存储用户的信息。如下图：
+  <img src="https://gitee.com/fspz/pic-go-relate/raw/master/img/login2.png" alt="image-20211227231529959" style="zoom:80%;" />
 
 - 用户登录测试三：
-  在登录界面，用户输入未注册的账号或者邮箱，系统会提示未注册并跳转到注册页面。如下图：
+  在登录界面，用户输入未注册的账号或者邮箱，系统会提示登录失败。如下图：
+  <img src="https://gitee.com/fspz/pic-go-relate/raw/master/img/login4.png" alt="image-20211227231631469" style="zoom: 67%;" />
+
+- 返回的数据如下：
+  <img src="https://gitee.com/fspz/pic-go-relate/raw/master/img/login6.png" alt="image-20211227232041117" style="zoom:80%;" />
 
 - 数据库更新后的信息如下:
 
 3. 题库数据结构的使用结果分析
 - 点击题库，跳转题库页面，同时向后端发送携带tid的url的get请求，获取到所有题目数据并渲染到页面上。如下图：
+  <img src="https://gitee.com/fspz/pic-go-relate/raw/master/img/data2.png" alt="image-20211227231915914" style="zoom:80%;" />
 
 - 获取到的数据如图：
-
+  ![image-20211227231812510](https://gitee.com/fspz/pic-go-relate/raw/master/img/data1.png)
 
 4. 代码编辑页数据结构的使用结果分析
 - 用户随意点击一题，此时便会根据题目ID向后端发送携带tid的url的get请求，获取题目的详细信息，并跳转到代码编辑页面展示题目与代码编辑框，如下图：
-
+  <img src="https://gitee.com/fspz/pic-go-relate/raw/master/img/editor1.png" alt="image-20211227232205461" style="zoom:50%;" />
 
 - 点击提交后，便将代码数据打包向后端发送post请求，后端收到数据后进行处理。如下图：
 
+
 - 获取到的数据如图：
+  <img src="https://gitee.com/fspz/pic-go-relate/raw/master/img/editor2.png" alt="image-20211227232401299" style="zoom:80%;" />
 
 5. 用户信息展示数据结构的使用结果分析
 - 点击顶部用户名即可跳转到用户界面，同时向后端发送携带uid的url的get请求，获取到数据后及时渲染到页面上。如下图：
+   <img src="https://gitee.com/fspz/pic-go-relate/raw/master/img/user1.png" alt="image-20211227232751515" style="zoom: 67%;" />
 
 - 获取到的数据如图：
+
+  <img src="https://gitee.com/fspz/pic-go-relate/raw/master/img/user0.png" alt="image-20211227232610255"  />
 
 6. 提交记录数据结构的使用和结果分析：
 undo
 
 7. 主页数据结构的使用和记过分析：
+undo
 
 
 
