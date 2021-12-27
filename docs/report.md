@@ -144,11 +144,31 @@ undo
 
 #### 实现环境
 
-undo
+- 计算机环境：
+
+  处理器：lntel(R) Core(TM) i7-9750H CPU @ 2.60GHz
+
+  内存（RAM）：16.00GB
+
+  操作系统：Windows10  X64 64位操作系统
+
+- 编译环境：
+
+  Pycharm、Goland、VScode
+
+- 实现语言：
+
+  html+css+js+go+ts+python
+
+- 实现框架：
+
+  前端：React
 
 #### 代码管理
 
-undo
+整体代码管理使用Gitee进行管理，整体通过sourcetree进行pull，push操作。Gitee页面如下。
+
+![image-20211227220319005](https://s2.loli.net/2021/12/27/sM4FlU2LYOzDaoy.png)
 
 #### 关键实现说明
 
