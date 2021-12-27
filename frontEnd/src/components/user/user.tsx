@@ -18,6 +18,7 @@ import Paper from '@mui/material/Paper';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import request from '@apis/common/authRequest'
+import avatorImage from '@images/avatar.jpg'
 
 
 const bull = (
@@ -168,7 +169,7 @@ const User: FunctionComponent<unknown> = () => {
                                   marginLeft: "45%", 
                                   marginBottom: 2, 
                                   marginTop: 2 }} 
-                    alt="Cindy Baker" src="../src/images/avatar.jpg" />
+                    alt="Cindy Baker" src={avatorImage} />
                 </Stack>
                 <Main></Main>
             </div>

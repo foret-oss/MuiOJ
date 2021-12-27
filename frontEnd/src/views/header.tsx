@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import { loginMessage } from '@apis/login/rest'
 import styled from '@emotion/styled';
 import {Global, css} from '@emotion/react'
+import homeAvatar from '@images/homeAvatar.png'
 
 const Header: FC<{}> = () => {
     const [isLogin, setIsLogin] = useState(false)
@@ -29,7 +30,7 @@ const Header: FC<{}> = () => {
         <HeaderOutside>
             <HeaderLayout>
                 <HeaderBlock>
-                    <img style={{ borderRadius: "5px", width: "50px", height: "50px" }} src='../src/images/homeAvatar.png' className='titlePicture'></img>
+                    <img style={{ borderRadius: "5px", width: "50px", height: "50px" }} src={homeAvatar} className='titlePicture'></img>
                     <HeaderTitle>Online Judge</HeaderTitle>
                     
                 </HeaderBlock>
