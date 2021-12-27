@@ -1,5 +1,5 @@
 const conf = {
-  baseUrl: 'http://tx.dedsec.site:8888'
+  baseUrl: 'https://muioj.wadwings.com'
 }
 
 export default conf
