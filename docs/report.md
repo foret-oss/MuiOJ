@@ -78,7 +78,7 @@
 - 谭滨瀚: 负责实现后端数据库的表项定义,后端服务与数据库的连接,提供后端接口与前端交互,同时提供认证功能
 - 施远栋: 负责部分题库数据集的清洗及导出，负责网站主页及提交记录页面的实现
 - undo
-- undo
+- 许楚辉：负责部分题库数据集的清洗及导出，协助网页前端开发
 
 #### 项目进度管理
 
@@ -96,19 +96,43 @@
 
 ### 原型系统设计
 
-undo
+运用工具设计原型系统，从而更准确说明主要功能和用户交互界面。
 
 #### 原型设计工具
 
-undo
+我们小组的原型系统设计采用了在线平台ProcessOn和墨刀免费版。
 
 #### 原型设计思路
 
-undo
+我们小组参考了各大OJ平台的界面设计，结合同学和自己的理解，我们认为简洁明了的环境最适合我的项目。所以，在设计中我们采用尽量精简的元素数量，只是对单个元素进行美化，使得我们的界面简洁而又不失美感。
 
 #### 原型设计成果
 
-undo
+首先是注册界面的原型图：
+
+![image-20211228221617647](https://gitee.com/xu_chu_hui/picture/raw/master/img/image-20211228221617647.png)
+
+其次是登录界面：
+
+![image-20211228221559648](https://gitee.com/xu_chu_hui/picture/raw/master/img/image-20211228221559648.png)
+
+登录的时候可以选择以用户名的方式登录或者以邮箱的方式登录。
+
+接下来是主要页面，分别是首页原型图：
+
+![image-20211228221509530](https://gitee.com/xu_chu_hui/picture/raw/master/img/image-20211228221509530.png)
+
+题库原型图：
+
+![image-20211228221434728](https://gitee.com/xu_chu_hui/picture/raw/master/img/image-20211228221434728.png)
+
+题目原型图：
+
+![image-20211228221748507](https://gitee.com/xu_chu_hui/picture/raw/master/img/image-20211228221748507.png)
+
+提交界面原型图：
+
+![image-20211228221849351](https://gitee.com/xu_chu_hui/picture/raw/master/img/image-20211228221849351.png)
 
 ## 概要设计和详细设计
 
