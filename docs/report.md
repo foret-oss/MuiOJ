@@ -193,11 +193,48 @@ content用来表示题目信息，accept用来表示用户通过次数，create_
 ];
 >
 此处引入了Mui Table的组件
-6. 首页主要数据：
-undo
+6. 首页主要数据：const rows 为要现实的数据的集合
+
+  每个row由下述函数获得
+
+  createData(
+
+   Notice: string,  
+
+   Way: string,
+
+   Uploader: string,
+
+   Date: string,
+
+  ) {
+
+   *return* { Notice, Way, Uploader, Date };
+
+  }
 
 7. 提交记录页面主要数据：
-undo
+    数据结构为
+
+  const rows=[ 
+
+  createData(
+
+  ​    item.question_title,
+
+  ​    item.status,
+
+  ​    item.time_used,
+
+  ​    item.space_used,
+
+  ​    item.language,
+
+  ​    item.created_at
+
+     )
+
+  ]
 
 
 #### 数据库表项设计
@@ -304,10 +341,14 @@ undo
   <img src="https://gitee.com/fspz/pic-go-relate/raw/master/img/user0.png" alt="image-20211227232610255"  />
 
 6. 提交记录数据结构的使用和结果分析：
-undo
 
-7. 主页数据结构的使用和记过分析：
-undo
+- 点击提交记录查看数据:
+
+  ![image-20211230224805915](https://s2.loli.net/2021/12/30/e5jbcI18MZNWugV.png)
+
+- 获取到的数据如图：
+
+  ![image-20211230224951807](https://s2.loli.net/2021/12/30/uqd8C6mB4YtvDZ7.png)
 
 
 
@@ -316,8 +357,6 @@ undo
 ## 总结
 
 ### 用户反馈
-
-undo
 
 #### 用户反馈样例
 
